@@ -1,1 +1,1 @@
-# markdown-browser-preview
+# markdown-preview

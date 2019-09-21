@@ -1,14 +1,14 @@
 {
-  "name": "markdown-browser-preview",
+  "name": "markdown-preview",
   "version": "1.0.0",
-  "description": "",
+  "description": "Markdown realtime preview on browser",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hyiromori/markdown-browser-preview.git"
+    "url": "git+https://github.com/hyiromori/markdown-preview.git"
   },
   "author": "hyiromori",
   "license": "MIT",
