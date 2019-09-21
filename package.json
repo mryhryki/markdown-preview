@@ -18,6 +18,7 @@
   "homepage": "https://github.com/hyiromori/markdown-browser-preview#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-ws": "^4.0.0"
+    "express-ws": "^4.0.0",
+    "yargs": "^14.0.0"
   }
 }

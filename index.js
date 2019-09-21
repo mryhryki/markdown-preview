@@ -1,74 +1,89 @@
 'use strict';
 
-const fs = require('fs');
-const express = require('express');
-const expressWs = require('express-ws');
+try {
+  const fs = require('fs');
+  const path = require('path');
+  const express = require('express');
+  const expressWs = require('express-ws');
+  const Args = require('yargs')
+    .option('target', { alias: 't', default: null, description: 'relative/absolute markdown file path' })
+    .option('verbose', { alias: 'v', default: false })
+    .option('port', { alias: 'p', default: 34567, description: 'server port' })
+    .option('interval', { default: 300, description: 'file polling interval (ms)' })
+    .help('help')
+    .alias('help', 'h')
+    .argv;
 
-const Config = {};
-Config.targetFilePath = './test.md';
-Config.port = 34567;
-Config.verbose = true;
-Config.intervalMilliSec = 500;
-
-const app = express();
-app.use(express.static('static'));
-expressWs(app);
-
-// -------------------------------------------------------------------------------------------------
-
-let sockets = [];
-const getLastModified = () => fs.statSync(Config.targetFilePath).mtimeMs;
-const getFileContent = () => fs.readFileSync(Config.targetFilePath, 'utf-8');
-
-// -------------------------------------------------------------------------------------------------
-
-app.ws('/ws', (ws/* , req */) => {
-  try {
-    sockets.push(ws);
-    console.log('WebSocket connected');
-    ws.send(getFileContent());
-
-    ws.on('message', (message) => {
-      if (Config.verbose) {
-        console.log(`WebSocket message: ${message}`);
-      }
-    });
-
-    ws.on('close', () => {
-      sockets = sockets.filter(socket => socket !== ws);
-      console.log('WebSocket closed:');
-    });
-
-  } catch (e) {
-    console.error(e);
+  if (Args.target == null) {
+    throw new Error('`--target/-t` option not specified.');
   }
-});
 
-const sendSockets = (payload) => {
-  if (!Array.isArray(sockets)) {
-    console.error('`sockets` is not Array');
-    return;
-  }
-  sockets.forEach((socket) => {
-    socket.send(payload);
-  });
-};
+  const targetFilePath = path.isAbsolute(Args.target) ? Args.target : path.resolve(__dirname, Args.target);
 
-// -------------------------------------------------------------------------------------------------
+  const app = express();
+  app.use(express.static('static'));
+  expressWs(app);
 
-let lastModified = getLastModified();
-setInterval(() => {
-  const currentLastModified = getLastModified();
-  if (lastModified !== currentLastModified) {
-    if (Config.verbose) {
-      console.log('File changed');
+  // -------------------------------------------------------------------------------------------------
+
+  let sockets = [];
+  const getLastModified = () => fs.statSync(targetFilePath).mtimeMs;
+  const getFileContent = () => fs.readFileSync(targetFilePath, 'utf-8');
+
+  // -------------------------------------------------------------------------------------------------
+
+  app.ws('/ws', (ws/* , req */) => {
+    try {
+      sockets.push(ws);
+      console.log('WebSocket connected');
+      ws.send(getFileContent());
+
+      ws.on('message', (message) => {
+        if (Args.verbose) {
+          console.log(`WebSocket message: ${message}`);
+        }
+      });
+
+      ws.on('close', () => {
+        sockets = sockets.filter(socket => socket !== ws);
+        console.log('WebSocket closed:');
+      });
+
+    } catch (e) {
+      console.error(e);
     }
-    lastModified = currentLastModified;
-    sendSockets(getFileContent());
-  }
+  });
 
-}, Config.intervalMilliSec);
+  const sendSockets = (payload) => {
+    if (!Array.isArray(sockets)) {
+      console.error('`sockets` is not Array');
+      return;
+    }
+    sockets.forEach((socket) => {
+      socket.send(payload);
+    });
+  };
 
-// Start!
-app.listen(Config.port);
-console.log(`Express Server Ready http://localhost:${Config.port}/`);
+  // -------------------------------------------------------------------------------------------------
+
+  let lastModified = getLastModified();
+  setInterval(() => {
+    const currentLastModified = getLastModified();
+    if (lastModified !== currentLastModified) {
+      if (Args.verbose) {
+        console.log('File changed');
+      }
+      lastModified = currentLastModified;
+      sendSockets(getFileContent());
+    }
+
+  }, Args.interval);
+
+  // Start!
+  app.listen(Args.port);
+  console.log(`Express Server Ready http://localhost:${Args.port}/`);
+
+} catch (err) {
+  console.error(err.message);
+  process.exit(1);
+}
