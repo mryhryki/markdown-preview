@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 try {
@@ -6,19 +7,25 @@ try {
   const express = require('express');
   const expressWs = require('express-ws');
   const Args = require('yargs')
+    .help('help')
+    .alias('help', 'h')
     .option('target', { alias: 't', default: null, description: 'relative/absolute markdown file path' })
     .option('verbose', { alias: 'v', default: false })
     .option('port', { alias: 'p', default: 34567, description: 'server port' })
     .option('interval', { default: 300, description: 'file polling interval (ms)' })
-    .help('help')
-    .alias('help', 'h')
     .argv;
 
   if (Args.target == null) {
     throw new Error('`--target/-t` option not specified.');
   }
-
   const targetFilePath = path.isAbsolute(Args.target) ? Args.target : path.resolve(__dirname, Args.target);
+
+  console.log('Target  :', targetFilePath);
+  console.log('Port    :', Args.port);
+  console.log('Interval:', Args.interval, 'ms');
+  console.log('Verbose :', Args.verbose);
+
+  // -------------------------------------------------------------------------------------------------
 
   const app = express();
   app.use(express.static('static'));
@@ -32,23 +39,18 @@ try {
 
   // -------------------------------------------------------------------------------------------------
 
+  let count = 1;
   app.ws('/ws', (ws/* , req */) => {
     try {
+      const id = count++;
       sockets.push(ws);
-      console.log('WebSocket connected');
+      console.log(`WebSocket connected: ${id}`);
       ws.send(getFileContent());
-
-      ws.on('message', (message) => {
-        if (Args.verbose) {
-          console.log(`WebSocket message: ${message}`);
-        }
-      });
 
       ws.on('close', () => {
         sockets = sockets.filter(socket => socket !== ws);
-        console.log('WebSocket closed:');
+        console.log(`WebSocket closed: ${id}`);
       });
-
     } catch (e) {
       console.error(e);
     }
@@ -79,9 +81,9 @@ try {
 
   }, Args.interval);
 
-  // Start!
+  // -------------------------------------------------------------------------------------------------
   app.listen(Args.port);
-  console.log(`Express Server Ready http://localhost:${Args.port}/`);
+  console.log(`Preview : http://localhost:${Args.port}/`);
 
 } catch (err) {
   console.error(err.message);

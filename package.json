@@ -1,8 +1,15 @@
 {
-  "name": "markdown-preview",
-  "version": "1.0.0",
+  "name": "@hyiromori/markdown-preview",
+  "version": "0.1.2",
   "description": "Markdown realtime preview on browser",
   "main": "index.js",
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": "5.2.0"
+  },
+  "bin": {
+    "markdown-preview": "./index.js"
+  },
   "scripts": {
     "start": "node index.js"
   },
@@ -12,10 +19,13 @@
   },
   "author": "hyiromori",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hyiromori/markdown-browser-preview/issues"
+  "publishConfdddig": {
+    "access": "public"
   },
-  "homepage": "https://github.com/hyiromori/markdown-browser-preview#readme",
+  "bugs": {
+    "url": "https://github.com/hyiromori/markdown-preview/issues"
+  },
+  "homepage": "https://github.com/hyiromori/markdown-preview#readme",
   "dependencies": {
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
