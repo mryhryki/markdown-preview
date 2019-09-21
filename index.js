@@ -18,7 +18,7 @@ try {
   if (Args.target == null) {
     throw new Error('`--target/-t` option not specified.');
   }
-  const targetFilePath = path.isAbsolute(Args.target) ? Args.target : path.resolve(__dirname, Args.target);
+  const targetFilePath = path.isAbsolute(Args.target) ? Args.target : path.resolve(process.cwd(), Args.target);
 
   console.log('Target  :', targetFilePath);
   console.log('Port    :', Args.port);
