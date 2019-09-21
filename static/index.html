@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  >
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Markdown</title>
+</head>
+<body>
+  <pre id="content"></pre>
+  <script type="text/javascript">
+    const ws = new WebSocket(`ws://${window.location.host}/ws`);
+    ws.addEventListener('open', (event) => {
+      console.log('WebSocket opened:', event);
+    });
+    ws.addEventListener('message', (event) => {
+      console.log('WebSocket received:', event);
+      const content = document.getElementById('content');
+      if (content != null) {
+        content.textContent = event.data;
+      }
+    });
+  </script>
+</body>
+</html>
