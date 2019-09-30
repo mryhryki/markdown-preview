@@ -95,7 +95,7 @@ try {
   </div>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script type="text/javascript">
-    const ws = new WebSocket(\`${location.protocol.replace('http', 'ws')}//${location.host}/ws\`);
+    const ws = new WebSocket(\`\${location.protocol.replace('http', 'ws')}//\${location.host}/ws\`);
     ws.addEventListener('open', (event) => {
       console.log('WebSocket opened:', event);
     });
