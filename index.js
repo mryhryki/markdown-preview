@@ -18,12 +18,14 @@ try {
   if (Args.target == null) {
     throw new Error('`--target/-t` option not specified.');
   }
+  const debugLog = (log) => Args.verbose && console.log(log);
   const targetFilePath = path.isAbsolute(Args.target) ? Args.target : path.resolve(process.cwd(), Args.target);
 
   console.log('Target  :', targetFilePath);
   console.log('Port    :', Args.port);
   console.log('Interval:', Args.interval, 'ms');
   console.log('Verbose :', Args.verbose);
+  console.log(`Preview : http://localhost:${Args.port}/`);
 
   // -------------------------------------------------------------------------------------------------
 
@@ -44,12 +46,12 @@ try {
     try {
       const id = count++;
       sockets.push(ws);
-      console.log(`WebSocket connected: ${id}`);
+      debugLog(`WebSocket connected: ${id}`);
       ws.send(getFileContent());
 
       ws.on('close', () => {
         sockets = sockets.filter(socket => socket !== ws);
-        console.log(`WebSocket closed: ${id}`);
+        debugLog(`WebSocket closed: ${id}`);
       });
     } catch (e) {
       console.error(e);
@@ -72,9 +74,7 @@ try {
   setInterval(() => {
     const currentLastModified = getLastModified();
     if (lastModified !== currentLastModified) {
-      if (Args.verbose) {
-        console.log('File changed');
-      }
+      debugLog('File changed');
       lastModified = currentLastModified;
       sendSockets(getFileContent());
     }
@@ -83,7 +83,6 @@ try {
 
   // -------------------------------------------------------------------------------------------------
   app.listen(Args.port);
-  console.log(`Preview : http://localhost:${Args.port}/`);
 
 } catch (err) {
   console.error(err.message);
