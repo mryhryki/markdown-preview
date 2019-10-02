@@ -85,7 +85,8 @@ try {
   <style type="text/css">
     body {
       margin: 0 auto;
-      max-width: 800px;
+      max-width: 784px;
+      padding: 8px;
     }
   </style>
 </head>

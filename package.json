@@ -1,6 +1,6 @@
 {
   "name": "@hyiromori/markdown-preview",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Markdown realtime preview on browser",
   "main": "index.js",
   "engines": {
