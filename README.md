@@ -4,7 +4,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Demo
 
-aaa
+![DEMO](https://github.com/hyiromori/markdown-preview/raw/master/gif/demo.gif)
 
 ## Usage
 

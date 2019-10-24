@@ -1,3 +1,4 @@
 .gitignore
 .idea
 package-lock.json
+gif/demo.gif
