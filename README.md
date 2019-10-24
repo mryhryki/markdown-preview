@@ -11,8 +11,9 @@ Markdown realtime preview on browser with your favorite editor.
 ```bash
 $ npx @hyiromori/markdown-preview --port 34567 --file README.md
 
-Markdown File : /your/current/dir/README.md
-Preview URL   : http://localhost:34567/
+Root Directory : /current/dir
+Default File   : /README.md
+Preview URL    : http://localhost:34567/
 ```
 
 ## Arguments
