@@ -4,8 +4,8 @@
   "description": "Markdown realtime preview on browser",
   "main": "index.js",
   "engines": {
-    "node": ">= 10.0.0",
-    "npm": "5.2.0"
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   },
   "bin": {
     "markdown-preview": "./index.js"
@@ -28,8 +28,6 @@
   "homepage": "https://github.com/hyiromori/markdown-preview#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-ws": "^4.0.0",
-    "marked": "^0.7.0",
-    "yargs": "^14.0.0"
+    "express-ws": "^4.0.0"
   }
 }
