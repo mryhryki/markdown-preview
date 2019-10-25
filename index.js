@@ -16,7 +16,7 @@ try {
   console.log(`Preview URL    : http://localhost:${port}/`);
 
   startFileWatch({
-    filepath: `${rootDir}${filepath}`,
+    filepath: path.resolve(rootDir, filepath),
     onFileChanged: ({ content }) => {
       sendSockets(content);
     },
@@ -24,9 +24,9 @@ try {
 
   const app = express();
   expressWs(app);
-  app.ws('/ws', WebSocketHandler((ws) => ws.send(getFileContent(`${rootDir}${filepath}`))));
   app.get('/', (_req, res) => res.redirect(filepath));
-  app.get(filepath, MarkdownHandler);
+  app.ws('/ws', WebSocketHandler((ws) => ws.send(getFileContent(path.resolve(rootDir, filepath)))));
+  app.get(`/${filepath}`, MarkdownHandler);
   app.use(express.static(rootDir));
   app.listen(port);
 

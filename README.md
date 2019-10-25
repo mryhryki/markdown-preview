@@ -18,7 +18,7 @@ Preview URL    : http://localhost:34567/
 
 ## Arguments
 
-| short | long   | parameter   | required | description        |
-|-------|--------|-------------|----------|--------------------|
-| -f    | --file | file path   | no       | default: README.md |
-| -p    | --port | port number | no       | default: 34567     |
+| short | long   | parameter            | required | description        |
+|-------|--------|----------------------|----------|--------------------|
+| -f    | --file | `relative` file path | no       | default: README.md |
+| -p    | --port | port number          | no       | default: 34567     |
