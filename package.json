@@ -1,6 +1,6 @@
 {
   "name": "@hyiromori/markdown-preview",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Markdown realtime preview on browser",
   "main": "index.js",
   "engines": {
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/hyiromori/markdown-preview#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-ws": "^4.0.0"
+    "express-ws": "^4.0.0",
+    "opener": "^1.5.1"
   }
 }
