@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+const path = require('path');
 const express = require('express');
 const expressWs = require('express-ws');
 const opener = require('opener');
