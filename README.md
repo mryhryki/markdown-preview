@@ -8,17 +8,35 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Usage
 
+### npx
+
 ```bash
 $ npx @hyiromori/markdown-preview --port 34567 --file README.md
 
 Root Directory : /current/dir
-Default File   : /README.md
+Default File   : README.md
+Preview URL    : http://localhost:34567/
+```
+
+### npm / yarn
+
+```bash
+$ npm install -g @hyiromori/markdown-preview
+# or
+$ yarn install -g @hyiromori/markdown-preview
+
+$ markdown-preview --port 34567 --file README.md
+
+Root Directory : /current/dir
+Default File   : README.md
 Preview URL    : http://localhost:34567/
 ```
 
 ## Arguments
 
-| short | long   | parameter            | required | description        |
-|-------|--------|----------------------|----------|--------------------|
-| -f    | --file | `relative` file path | no       | default: README.md |
-| -p    | --port | port number          | no       | default: 34567     |
+| short | long      | parameter            | required | description          |
+|-------|-----------|----------------------|----------|----------------------|
+| -f    | --file    | `relative` file path | no       | default: `README.md` |
+| -p    | --port    | port number          | no       | default: `34567`     |
+| -v    | --version |                      | no       |                      |
+| -h    | --help    |                      | no       |                      |
