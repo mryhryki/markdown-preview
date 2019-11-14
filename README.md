@@ -10,7 +10,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 ### npx
 
-```bash
+```
 $ npx @hyiromori/markdown-preview --port 34567 --file README.md
 
 Root Directory : /current/dir
@@ -20,7 +20,7 @@ Preview URL    : http://localhost:34567/
 
 ### npm / yarn
 
-```bash
+```
 $ npm install -g @hyiromori/markdown-preview
 # or
 $ yarn install -g @hyiromori/markdown-preview

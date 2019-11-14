@@ -2,16 +2,16 @@
   "name": "@hyiromori/markdown-preview",
   "version": "0.2.8",
   "description": "Markdown realtime preview on browser",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
   "bin": {
-    "markdown-preview": "./index.js"
+    "markdown-preview": "src/index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "DO_NOT_OPEN=true nodemon src/index.js --watch ./src/"
   },
   "repository": {
     "type": "git",
@@ -34,5 +34,8 @@
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
     "opener": "^1.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
