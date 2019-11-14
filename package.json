@@ -11,7 +11,7 @@
     "markdown-preview": "src/index.js"
   },
   "scripts": {
-    "start": "DO_NOT_OPEN=true nodemon src/index.js --watch ./src/"
+    "start": "NO_OPENER=true nodemon src/index.js --watch ./src/"
   },
   "repository": {
     "type": "git",
