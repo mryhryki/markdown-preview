@@ -34,9 +34,37 @@ Preview URL    : http://localhost:34567/
 
 ## Arguments
 
-| short | long      | parameter            | required | description          |
-|-------|-----------|----------------------|----------|----------------------|
-| -f    | --file    | `relative` file path | no       | default: `README.md` |
-| -p    | --port    | port number          | no       | default: `34567`     |
-| -v    | --version |                      | no       |                      |
-| -h    | --help    |                      | no       |                      |
+| short | long       | parameter            | required | description          |
+|-------|------------|----------------------|----------|----------------------|
+| -f    | --file     | `relative` file path | no       | default: `README.md` |
+| -t    | --template | template name(*1)    | no       | default: `default`   |
+| -p    | --port     | port number          | no       | default: `34567`     |
+| -v    | --version  |                      | no       |                      |
+| -h    | --help     |                      | no       |                      |
+
+*1: defined template name or html file path.
+
+### Defined Template Names
+
+* `default`
+
+## Minimum Customized Template
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Minimum Customized Template</title>
+  </head>
+  <body>
+    <pre id="raw-markdown"></pre>
+    <script src="/markdown-preview-websocket.js"></script>
+    <script type="text/javascript">
+      connectMarkdownPreview((changedEvent) => {
+        const { markdown } = changedEvent;
+        document.getElementById('raw-markdown').innerHTML = markdown.replace(/</g, '&lt;').replace(/</g, '&gt;');
+      });
+    </script>
+  </body>
+</html>
+```

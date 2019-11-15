@@ -4,7 +4,7 @@ const fs = require('fs');
 const WatchIntervalMs = 250;
 
 const getLastModified = (filepath) => fs.statSync(filepath).mtimeMs;
-const getFileContent = (filepath) => fs.readFileSync(filepath, 'utf-8');
+const getFileObject = (filepath) => ({ markdown: fs.readFileSync(filepath, 'utf-8') });
 
 let lastModified = null;
 let intervalId = null;
@@ -15,9 +15,7 @@ const startFileWatch = ({ filepath, onFileChanged }) => {
     const currentLastModified = getLastModified(filepath);
     if (lastModified !== currentLastModified) {
       lastModified = currentLastModified;
-      onFileChanged({
-        content: getFileContent(filepath),
-      });
+      onFileChanged(getFileObject(filepath));
     }
   }, WatchIntervalMs);
 };
@@ -25,5 +23,5 @@ const startFileWatch = ({ filepath, onFileChanged }) => {
 module.exports = {
   startFileWatch,
   getLastModified,
-  getFileContent,
+  getFileObject,
 };

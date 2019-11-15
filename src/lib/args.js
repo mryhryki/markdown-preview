@@ -1,8 +1,9 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
 const pkg = require('../../package.json');
+const { currentDir,templateDir } = require('./directory');
+const { existsFile } = require('./file');
 
 const usage = `
 Usage:
@@ -10,8 +11,9 @@ Usage:
   markdown-preview [options]
 
 Options:
-  -p,--port [port_number]        Default: 34567
-  -f,--file [relative_file_path] Default: README.md
+  -f,--file     [relative_file_path] Default: README.md
+  -t,--template [template_name]      Default: default
+  -p,--port     [port_number]        Default: 34567
   -v,--version
   -h,--help
 `;
@@ -22,6 +24,7 @@ const showUsage = (exitCode = 1) => {
 };
 
 let filepath = 'README.md';
+let template = 'default';
 let port = 34567;
 
 const args = process.argv.slice(2);
@@ -43,6 +46,11 @@ for (let i = 0; i < args.length; i++) {
       port = p;
       i++;
       break;
+    case '-t':
+    case '--template':
+      template = args[i + 1];
+      i++;
+      break;
     case '-v':
     case '--version':
       console.log(pkg.version);
@@ -57,21 +65,29 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-try {
-  fs.statSync(filepath);
-} catch (_) {
+if (!existsFile(filepath)) {
   console.error('File not found:', filepath);
   process.exit(2);
 }
 
-filepath = `${path.relative(process.cwd(), filepath)}`;
+filepath = path.relative(currentDir, filepath);
 if (filepath.match(/\.\./) != null) {
   console.error('Illegal file path:', filepath);
   process.exit(3);
 }
 
+if (existsFile(path.resolve(templateDir, `${template}.html`))) {
+  template = path.resolve(templateDir, `${template}.html`);
+} else if (!existsFile(template)) {
+  console.error('Template file not found:', template);
+  process.exit(4);
+} else {
+  template = path.resolve(currentDir, template);
+}
+
 module.exports = {
   showUsage,
   filepath,
+  template,
   port,
 };
