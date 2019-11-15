@@ -5,7 +5,7 @@ const express = require('express');
 const expressWs = require('express-ws');
 const opener = require('opener');
 const { rootDir, staticDir } = require('./lib/directory');
-const { showUsage, filepath, port, template } = require('./lib/args');
+const { showUsage, filepath, port, template, noOpener } = require('./lib/args');
 const { WebSocketHandler, sendSockets } = require('./lib/websocket');
 const { startFileWatch, getFileObject } = require('./lib/file_watcher');
 
@@ -32,7 +32,7 @@ try {
   app.use(express.static(staticDir));
   app.listen(port);
 
-  if (process.env.NO_OPENER !== 'true') {
+  if (!noOpener) {
     opener(previewUrl);
   }
 

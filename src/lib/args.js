@@ -2,7 +2,7 @@
 
 const path = require('path');
 const pkg = require('../../package.json');
-const { currentDir,templateDir } = require('./directory');
+const { currentDir, templateDir } = require('./directory');
 const { existsFile } = require('./file');
 
 const usage = `
@@ -23,9 +23,17 @@ const showUsage = (exitCode = 1) => {
   process.exit(exitCode);
 };
 
-let filepath = 'README.md';
-let template = 'default';
-let port = 34567;
+const convPort = (strPort) => {
+  const port = parseInt(strPort, 10);
+  if (!isNaN(port) && 0 < port && port <= 65535) return port;
+  console.error('Invalid port:', strPort);
+  showUsage();
+};
+
+let filepath = process.env.MARKDOWN_PREVIEW_FILE || 'README.md';
+let template = process.env.MARKDOWN_PREVIEW_TEMPLATE || 'default';
+let port = process.env.MARKDOWN_PREVIEW_PORT ? convPort(process.env.MARKDOWN_PREVIEW_PORT) : 34567;
+let noOpener = process.env.MARKDOWN_PREVIEW_NO_OPENER === 'true' || false;
 
 const args = process.argv.slice(2);
 for (let i = 0; i < args.length; i++) {
@@ -38,18 +46,16 @@ for (let i = 0; i < args.length; i++) {
       break;
     case '-p':
     case '--port':
-      const p = parseInt(args[i + 1], 10);
-      if (isNaN(p) || p < 0 || 65535 < p) {
-        console.error('Invalid port:', args[i + 1]);
-        showUsage();
-      }
-      port = p;
+      port = convPort(args[i + 1]);
       i++;
       break;
     case '-t':
     case '--template':
       template = args[i + 1];
       i++;
+      break;
+    case '--no-opener':
+      noOpener = true;
       break;
     case '-v':
     case '--version':
@@ -90,4 +96,5 @@ module.exports = {
   filepath,
   template,
   port,
+  noOpener,
 };
