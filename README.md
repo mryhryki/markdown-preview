@@ -32,15 +32,16 @@ Default File   : README.md
 Preview URL    : http://localhost:34567/
 ```
 
-## Arguments
+## Parameter
 
-| short | long       | parameter            | required | description          |
-|-------|------------|----------------------|----------|----------------------|
-| -f    | --file     | `relative` file path | no       | default: `README.md` |
-| -t    | --template | template name(*1)    | no       | default: `default`   |
-| -p    | --port     | port number          | no       | default: `34567`     |
-| -v    | --version  |                      | no       |                      |
-| -h    | --help     |                      | no       |                      |
+| short | long        | environment variable       | parameter            | required | description          |
+|-------|-------------|----------------------------|----------------------|----------|----------------------|
+| -f    | --file      | MARKDOWN_PREVIEW_FILE      | `relative` file path | no       | default: `README.md` |
+| -t    | --template  | MARKDOWN_PREVIEW_TEMPLATE  | template name(*1)    | no       | default: `default`   |
+| -p    | --port      | MARKDOWN_PREVIEW_PORT      | port number          | no       | default: `34567`     |
+|       | --no-opener | MARKDOWN_PREVIEW_NO_OPENER | true (only env var)  | no       |                      |
+| -v    | --version   |                            |                      | no       |                      |
+| -h    | --help      |                            |                      | no       |                      |
 
 *1: defined template name or html file path.
 
