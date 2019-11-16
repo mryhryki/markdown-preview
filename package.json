@@ -1,14 +1,14 @@
 {
   "name": "@hyiromori/markdown-preview",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Markdown realtime preview on browser",
-  "main": "src/index.js",
+  "main": "index.js",
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
   "bin": {
-    "markdown-preview": "src/index.js"
+    "markdown-preview": "index.js"
   },
   "scripts": {
     "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug"
