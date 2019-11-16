@@ -2,6 +2,7 @@
 
 const path = require('path');
 const pkg = require('../../package.json');
+const Logger = require('./logger');
 const { currentDir, templateDir } = require('./directory');
 const { existsFile } = require('./file');
 
@@ -26,7 +27,7 @@ const showUsage = (exitCode = 1) => {
 const convPort = (strPort) => {
   const port = parseInt(strPort, 10);
   if (!isNaN(port) && 0 < port && port <= 65535) return port;
-  console.error('Invalid port:', strPort);
+  Logger.error('Invalid port:', strPort);
   showUsage();
 };
 
@@ -34,24 +35,30 @@ let filepath = process.env.MARKDOWN_PREVIEW_FILE || 'README.md';
 let template = process.env.MARKDOWN_PREVIEW_TEMPLATE || 'default';
 let port = process.env.MARKDOWN_PREVIEW_PORT ? convPort(process.env.MARKDOWN_PREVIEW_PORT) : 34567;
 let noOpener = process.env.MARKDOWN_PREVIEW_NO_OPENER === 'true' || false;
+let logLevel = process.env.MARKDOWN_PREVIEW_LOG_LEVEL || 'info';
 
-const args = process.argv.slice(2);
-for (let i = 0; i < args.length; i++) {
-  switch (args[i]) {
+const param = process.argv.slice(2);
+for (let i = 0; i < param.length; i++) {
+  switch (param[i]) {
     case '-f':
     case '--file':
-      if (path.isAbsolute(args[i + 1])) showUsage(2);
-      filepath = args[i + 1];
+      if (path.isAbsolute(param[i + 1])) showUsage(2);
+      filepath = param[i + 1];
       i++;
       break;
     case '-p':
     case '--port':
-      port = convPort(args[i + 1]);
+      port = convPort(param[i + 1]);
       i++;
       break;
     case '-t':
     case '--template':
-      template = args[i + 1];
+      template = param[i + 1];
+      i++;
+      break;
+    case '-l':
+    case '--log-level':
+      logLevel = param[i + 1];
       i++;
       break;
     case '--no-opener':
@@ -72,7 +79,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 if (!existsFile(filepath)) {
-  console.error('File not found:', filepath);
+  removeTargetFile.error('File not found:', filepath);
   process.exit(2);
 }
 
@@ -91,10 +98,16 @@ if (existsFile(path.resolve(templateDir, `${template}.html`))) {
   template = path.resolve(currentDir, template);
 }
 
+if (!['trace', 'debug', 'info', 'warn', 'error', 'fatal'].includes(logLevel)) {
+  console.error('Invalid log level:', logLevel);
+  process.exit(5);
+}
+
 module.exports = {
   showUsage,
   filepath,
-  template,
-  port,
+  logLevel,
   noOpener,
+  port,
+  template,
 };

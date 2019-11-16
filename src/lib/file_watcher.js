@@ -1,27 +1,55 @@
 'use strict';
 
 const fs = require('fs');
-const WatchIntervalMs = 250;
+const path = require('path');
+const Logger = require('./logger');
+const { currentDir } = require('./directory');
 
-const getLastModified = (filepath) => fs.statSync(filepath).mtimeMs;
-const getFileObject = (filepath) => ({ markdown: fs.readFileSync(filepath, 'utf-8') });
+class FileWatcher {
+  constructor() {
+    this._target = {};
+    setInterval(() => {
+      Object.keys(this._target).forEach((filepath) => {
+        const fileinfo = this._target[filepath];
+        const currentLastModified = this.getFileLastModified(filepath);
+        if (fileinfo.lastModified !== currentLastModified) {
+          Logger.info('File update:', path.resolve(currentDir, filepath));
+          fileinfo.lastModified = currentLastModified;
+          if (this._onFileChanged != null) {
+            this._onFileChanged(this.getFileInfo(filepath));
+          }
+        }
+      });
+    }, 250);
+  }
 
-let lastModified = null;
-let intervalId = null;
+  onFileChanged(callback) {
+    this._onFileChanged = callback;
+  }
 
-const startFileWatch = ({ filepath, onFileChanged }) => {
-  if (intervalId != null) return;
-  intervalId = setInterval(() => {
-    const currentLastModified = getLastModified(filepath);
-    if (lastModified !== currentLastModified) {
-      lastModified = currentLastModified;
-      onFileChanged(getFileObject(filepath));
-    }
-  }, WatchIntervalMs);
-};
+  addTargetFile(filepath) {
+    if (this._target[filepath] != null) return;
+    Logger.debug('Add watch target:', filepath);
+    this._target[filepath] = {
+      lastModified: this.getFileLastModified(filepath),
+    };
+  }
 
-module.exports = {
-  startFileWatch,
-  getLastModified,
-  getFileObject,
-};
+  removeTargetFile(filepath) {
+    if (this._target[filepath] == null) return;
+    Logger.debug('Remove watch target:', filepath);
+    delete this._target[filepath];
+  }
+
+  getFileLastModified(filepath) {
+    return fs.statSync(path.resolve(currentDir, filepath)).mtimeMs;
+  }
+
+  getFileInfo(filepath) {
+    const absolutePath = path.resolve(currentDir, filepath);
+    const markdown = fs.readFileSync(absolutePath, 'utf-8');
+    return { filepath, markdown };
+  }
+}
+
+module.exports = new FileWatcher();
