@@ -1,6 +1,6 @@
 {
   "name": "@hyiromori/markdown-preview",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Markdown realtime preview on browser",
   "main": "src/index.js",
   "engines": {
@@ -11,7 +11,7 @@
     "markdown-preview": "src/index.js"
   },
   "scripts": {
-    "start": "NO_OPENER=true nodemon src/index.js --watch ./src/"
+    "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
+    "log4js": "^6.0.0",
     "opener": "^1.5.1"
   },
   "devDependencies": {

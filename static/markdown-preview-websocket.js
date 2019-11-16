@@ -1,5 +1,7 @@
 const connectMarkdownPreview = (onMarkdownFileChanged) => {
-  const ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.host + '/ws');
+  const protocol = location.protocol.replace('http', 'ws');
+  const url = `${protocol}//${location.host}/ws?path=${encodeURIComponent(location.pathname)}`;
+  const ws = new WebSocket(url);
   ws.addEventListener('message', ({ data }) => {
     try {
       const payload = JSON.parse(data);
