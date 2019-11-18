@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+  <title>Minimum Customized Template</title>
+</head>
+<body>
+  <pre id="raw-markdown"></pre>
+  <script src="/markdown-preview-websocket.js"></script>
+  <script type="text/javascript">
+    connectMarkdownPreview((changedEvent) => {
+      const { markdown } = changedEvent;
+      document.getElementById('raw-markdown').innerHTML = markdown.replace(/</g, '&lt;').replace(/</g, '&gt;');
+    });
+  </script>
+</body>
+</html>

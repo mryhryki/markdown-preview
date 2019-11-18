@@ -11,7 +11,9 @@
     "markdown-preview": "index.js"
   },
   "scripts": {
-    "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug"
+    "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "opener": "^1.5.1"
   },
   "devDependencies": {
+    "jest": "^24.9.0",
     "nodemon": "^1.19.4"
   }
 }
