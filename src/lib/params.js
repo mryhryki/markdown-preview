@@ -6,9 +6,10 @@ const { existsFile } = require('./file');
 
 class Params {
   constructor(env, argv) {
-    const obj = Object.assign({}, this.getDefaultParams(), this.parseEnv(env), this.parseArgv(argv));
+    const obj = Object.assign(this.getDefaultParams(), this.parseEnv(env), this.parseArgv(argv));
     this._params = {
       filepath: this.checkFilepath(obj.filepath),
+      extensions: this.checkExtensions(obj.extensions),
       template: this.checkTemplate(obj.template),
       port: this.checkPort(obj.port),
       logLevel: this.checkLogLevel(obj.logLevel),
@@ -21,6 +22,7 @@ class Params {
   getDefaultParams() {
     return {
       filepath: 'README.md',
+      extensions: 'md, markdown',
       template: 'default',
       port: 34567,
       logLevel: 'info',
@@ -34,6 +36,9 @@ class Params {
     const params = {};
     if (env.MARKDOWN_PREVIEW_FILE) {
       params.filepath = env.MARKDOWN_PREVIEW_FILE;
+    }
+    if (env.MARKDOWN_PREVIEW_EXTENSIONS) {
+      params.extensions = env.MARKDOWN_PREVIEW_EXTENSIONS;
     }
     if (env.MARKDOWN_PREVIEW_TEMPLATE) {
       params.template = env.MARKDOWN_PREVIEW_TEMPLATE;
@@ -57,6 +62,11 @@ class Params {
         case '-f':
         case '--file':
           params.filepath = argv[i + 1];
+          i++;
+          break;
+        case '-e':
+        case '--extensions':
+          params.extensions = argv[i + 1];
           i++;
           break;
         case '-t':
@@ -106,6 +116,14 @@ class Params {
     return filepath;
   }
 
+  checkExtensions(extensions) {
+    const extensionList = extensions.split(',').map(ext => ext.trim());
+    if (extensionList.length === 0) {
+      throw new Error(`Extensions is empty: ${extensions}`);
+    }
+    return extensionList;
+  }
+
   checkTemplate(template) {
     if (existsFile(path.resolve(templateDir, `${template}.html`))) {
       return path.resolve(templateDir, `${template}.html`);
@@ -133,6 +151,10 @@ class Params {
 
   get filepath() {
     return this._params.filepath;
+  }
+
+  get extensions() {
+    return this._params.extensions;
   }
 
   get template() {
