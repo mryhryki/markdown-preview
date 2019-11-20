@@ -4,6 +4,7 @@ const Params = require('./params');
 
 const DEFAULT_VALUES = {
   filepath: 'README.md',
+  extensions: ['md', 'markdown'],
   template: path.resolve(rootDir, 'template/default.html'),
   port: 34567,
   logLevel: 'info',
@@ -21,6 +22,7 @@ describe('Params', () => {
   it('specify all short argument', () => {
     const argv = [
       '-f', 'test/markdown/markdown1.md',
+      '-e', 'ext1,ext2',
       '-t', 'test/template/template1.html',
       '-p', '100',
       '-v',
@@ -28,6 +30,7 @@ describe('Params', () => {
     ];
     const expectParams = {
       filepath: 'test/markdown/markdown1.md',
+      extensions: ['ext1', 'ext2'],
       template: path.resolve(rootDir, 'test/template/template1.html'),
       port: 100,
       logLevel: 'info',
@@ -42,6 +45,7 @@ describe('Params', () => {
   it('specify all long argument', () => {
     const argv = [
       '--file', 'test/markdown/markdown1.md',
+      '--extensions', 'ext1,ext2',
       '--template', 'test/template/template1.html',
       '--port', '100',
       '--log-level', 'trace',
@@ -51,6 +55,7 @@ describe('Params', () => {
     ];
     const expectParams = {
       filepath: 'test/markdown/markdown1.md',
+      extensions: ['ext1', 'ext2'],
       template: path.resolve(rootDir, 'test/template/template1.html'),
       port: 100,
       logLevel: 'trace',
@@ -65,6 +70,7 @@ describe('Params', () => {
   it('specify all environment variable', () => {
     const env = {
       MARKDOWN_PREVIEW_FILE: 'test/markdown/markdown1.md',
+      MARKDOWN_PREVIEW_EXTENSIONS: 'ext1, ext2',
       MARKDOWN_PREVIEW_TEMPLATE: 'test/template/template1.html',
       MARKDOWN_PREVIEW_PORT: '100',
       MARKDOWN_PREVIEW_LOG_LEVEL: 'trace',
@@ -72,6 +78,7 @@ describe('Params', () => {
     };
     const expectParams = {
       filepath: 'test/markdown/markdown1.md',
+      extensions: ['ext1', 'ext2'],
       template: path.resolve(rootDir, 'test/template/template1.html'),
       port: 100,
       logLevel: 'trace',

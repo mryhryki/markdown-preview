@@ -3,7 +3,6 @@
 const express = require('express');
 const expressWs = require('express-ws');
 const opener = require('opener');
-const pkg = require('../package.json');
 const getLogger = require('./lib/logger');
 const { showUsage, showVersion } = require('./lib/show');
 const MarkdownHandler = require('./markdown');
@@ -21,6 +20,7 @@ try {
 
   console.log('Root Directory :', rootDir);
   console.log('Default File   :', params.filepath);
+  console.log('Extensions     :', params.extensions.join(', '));
   console.log('Template File  :', params.template);
   console.log(`Preview URL    : ${previewUrl}`);
 
@@ -28,7 +28,9 @@ try {
   expressWs(app);
   app.get('/', (_req, res) => res.redirect(params.filepath));
   app.ws('/ws', WebSocketHandler(logger));
-  app.get(`/*.md`, MarkdownHandler(params.template));
+  params.extensions.forEach((ext) => {
+    app.get(`/*.${ext}`, MarkdownHandler(params.template));
+  });
   app.use(express.static(rootDir));
   app.use(express.static(staticDir));
   app.listen(params.port);
