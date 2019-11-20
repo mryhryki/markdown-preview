@@ -2,11 +2,11 @@
 
 const FileWatcher = require('./lib/file_watcher');
 const SocketManager = require('./lib/socket_manager');
-const Logger = require('./lib/logger');
 
-const WebSocketHandler = () => {
+const WebSocketHandler = (logger) => {
   let socketSeqNo = 1;
-  FileWatcher.onFileChanged((fileinfo) => {
+  const fileWatcher = new FileWatcher(logger);
+  fileWatcher.onFileChanged((fileinfo) => {
     SocketManager.getSockets(fileinfo.filepath).forEach((ws) => {
       ws.send(JSON.stringify(fileinfo));
     });
@@ -15,22 +15,22 @@ const WebSocketHandler = () => {
   return (ws, req) => {
     const wsSeqNo = socketSeqNo++;
     try {
-      Logger.debug('WebSocket connected:', wsSeqNo);
+      logger.debug('WebSocket connected:', wsSeqNo);
       const filepath = req.query.path.substr(1);
-      FileWatcher.addTargetFile(filepath);
+      fileWatcher.addTargetFile(filepath);
       SocketManager.addSocket(ws, filepath);
 
       ws.on('close', () => {
-        Logger.debug('WebSocket close:', wsSeqNo);
+        logger.debug('WebSocket close:', wsSeqNo);
         SocketManager.removeSocket(ws);
         if (SocketManager.countSocket(filepath) === 0) {
-          FileWatcher.removeTargetFile(filepath);
+          fileWatcher.removeTargetFile(filepath);
         }
       });
 
-      ws.send(JSON.stringify(FileWatcher.getFileInfo(filepath)));
+      ws.send(JSON.stringify(fileWatcher.getFileInfo(filepath)));
     } catch (e) {
-      Logger.error(e);
+      logger.error(e);
     }
   };
 };
