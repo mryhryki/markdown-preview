@@ -15,7 +15,7 @@ const DEFAULT_VALUES = {
 describe('Params', () => {
   it('not specify', () => {
     const params = new Params({}, []);
-    expect(params.params).toEqual(DEFAULT_VALUES);
+    expect(params._params).toEqual(DEFAULT_VALUES);
   });
 
   it('specify all short argument', () => {
@@ -36,7 +36,7 @@ describe('Params', () => {
       help: true,
     };
     const params = new Params({}, argv);
-    expect(params.params).toEqual(expectParams);
+    expect(params._params).toEqual(expectParams);
   });
 
   it('specify all long argument', () => {
@@ -59,7 +59,7 @@ describe('Params', () => {
       help: true,
     };
     const params = new Params({}, argv);
-    expect(params.params).toEqual(expectParams);
+    expect(params._params).toEqual(expectParams);
   });
 
   it('specify all environment variable', () => {
@@ -80,6 +80,6 @@ describe('Params', () => {
       help: false,
     };
     const params = new Params(env, []);
-    expect(params.params).toEqual(expectParams);
+    expect(params._params).toEqual(expectParams);
   });
 });

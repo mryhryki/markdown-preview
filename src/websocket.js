@@ -5,9 +5,10 @@ const SocketManager = require('./lib/socket_manager');
 
 const WebSocketHandler = (logger) => {
   let socketSeqNo = 1;
+  const socketManager = new SocketManager();
   const fileWatcher = new FileWatcher(logger);
   fileWatcher.onFileChanged((fileinfo) => {
-    SocketManager.getSockets(fileinfo.filepath).forEach((ws) => {
+    socketManager.getSockets(fileinfo.filepath).forEach((ws) => {
       ws.send(JSON.stringify(fileinfo));
     });
   });
@@ -18,12 +19,12 @@ const WebSocketHandler = (logger) => {
       logger.debug('WebSocket connected:', wsSeqNo);
       const filepath = req.query.path.substr(1);
       fileWatcher.addTargetFile(filepath);
-      SocketManager.addSocket(ws, filepath);
+      socketManager.addSocket(ws, filepath);
 
       ws.on('close', () => {
         logger.debug('WebSocket close:', wsSeqNo);
-        SocketManager.removeSocket(ws);
-        if (SocketManager.countSocket(filepath) === 0) {
+        socketManager.removeSocket(ws);
+        if (socketManager.countSocket(filepath) === 0) {
           fileWatcher.removeTargetFile(filepath);
         }
       });

@@ -7,7 +7,7 @@ const { existsFile } = require('./file');
 class Params {
   constructor(env, argv) {
     const obj = Object.assign({}, this.getDefaultParams(), this.parseEnv(env), this.parseArgv(argv));
-    this.params = {
+    this._params = {
       filepath: this.checkFilepath(obj.filepath),
       template: this.checkTemplate(obj.template),
       port: this.checkPort(obj.port),
@@ -132,31 +132,31 @@ class Params {
   }
 
   get filepath() {
-    return this.params.filepath;
+    return this._params.filepath;
   }
 
   get template() {
-    return this.params.template;
+    return this._params.template;
   }
 
   get port() {
-    return this.params.port;
+    return this._params.port;
   }
 
   get logLevel() {
-    return this.params.logLevel;
+    return this._params.logLevel;
   }
 
   get noOpener() {
-    return this.params.noOpener;
+    return this._params.noOpener;
   }
 
   get version() {
-    return this.params.version;
+    return this._params.version;
   }
 
   get help() {
-    return this.params.help;
+    return this._params.help;
   }
 }
 
