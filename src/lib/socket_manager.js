@@ -27,4 +27,4 @@ class SocketManager {
   }
 }
 
-module.exports = new SocketManager();
+module.exports = SocketManager;
