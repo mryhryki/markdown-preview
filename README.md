@@ -64,7 +64,8 @@ Preview URL    : http://localhost:34567/
     <script type="text/javascript">
       connectMarkdownPreview((changedEvent) => {
         const { markdown } = changedEvent;
-        document.getElementById('raw-markdown').innerHTML = markdown.replace(/</g, '&lt;').replace(/</g, '&gt;');
+        document.getElementById('raw-markdown').innerHTML =
+            markdown.replace(/</g, '&lt;').replace(/>/g, '&gt;');
       });
     </script>
   </body>
