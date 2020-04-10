@@ -1,11 +1,11 @@
 const path = require('path');
-const { rootDir } = require('./directory');
+const { projectDir } = require('./directory');
 const Params = require('./params');
 
 const DEFAULT_VALUES = {
   filepath: 'README.md',
   extensions: ['md', 'markdown'],
-  template: path.resolve(rootDir, 'template/default.html'),
+  template: path.resolve(projectDir, 'template/default.html'),
   port: 34567,
   logLevel: 'info',
   noOpener: false,
@@ -31,7 +31,7 @@ describe('Params', () => {
     const expectParams = {
       filepath: 'test/markdown/markdown1.md',
       extensions: ['ext1', 'ext2'],
-      template: path.resolve(rootDir, 'test/template/template1.html'),
+      template: path.resolve(projectDir, 'test/template/template1.html'),
       port: 100,
       logLevel: 'info',
       noOpener: false,
@@ -56,7 +56,7 @@ describe('Params', () => {
     const expectParams = {
       filepath: 'test/markdown/markdown1.md',
       extensions: ['ext1', 'ext2'],
-      template: path.resolve(rootDir, 'test/template/template1.html'),
+      template: path.resolve(projectDir, 'test/template/template1.html'),
       port: 100,
       logLevel: 'trace',
       noOpener: true,
@@ -79,7 +79,7 @@ describe('Params', () => {
     const expectParams = {
       filepath: 'test/markdown/markdown1.md',
       extensions: ['ext1', 'ext2'],
-      template: path.resolve(rootDir, 'test/template/template1.html'),
+      template: path.resolve(projectDir, 'test/template/template1.html'),
       port: 100,
       logLevel: 'trace',
       noOpener: true,

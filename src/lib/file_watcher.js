@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { currentDir } = require('./directory');
+const { rootDir } = require('./directory');
 
 class FileWatcher {
   constructor(logger) {
@@ -13,7 +13,7 @@ class FileWatcher {
         const fileinfo = this._target[filepath];
         const currentLastModified = this.getFileLastModified(filepath);
         if (fileinfo.lastModified !== currentLastModified) {
-          this.logger.info('File update:', path.resolve(currentDir, filepath));
+          this.logger.info('File update:', path.resolve(rootDir, filepath));
           fileinfo.lastModified = currentLastModified;
           if (this._onFileChanged != null) {
             this._onFileChanged(this.getFileInfo(filepath));
@@ -42,11 +42,11 @@ class FileWatcher {
   }
 
   getFileLastModified(filepath) {
-    return fs.statSync(path.resolve(currentDir, filepath)).mtimeMs;
+    return fs.statSync(path.resolve(rootDir, filepath)).mtimeMs;
   }
 
   getFileInfo(filepath) {
-    const absolutePath = path.resolve(currentDir, filepath);
+    const absolutePath = path.resolve(rootDir, filepath);
     const markdown = fs.readFileSync(absolutePath, 'utf-8');
     return { filepath, markdown };
   }

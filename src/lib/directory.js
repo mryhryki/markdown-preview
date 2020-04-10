@@ -2,14 +2,14 @@
 
 const path = require('path');
 
-const currentDir = process.cwd();
-const rootDir = path.resolve(__dirname, '..', '..');
-const staticDir = path.resolve(rootDir, 'static');
-const templateDir = path.resolve(rootDir, 'template');
+const rootDir = process.cwd();
+const projectDir = path.resolve(__dirname, '..', '..');
+const staticDir = path.resolve(projectDir, 'static');
+const templateDir = path.resolve(projectDir, 'template');
 
 module.exports = {
-  currentDir,
   rootDir,
+  projectDir,
   staticDir,
   templateDir,
 };

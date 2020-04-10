@@ -32,9 +32,9 @@ try {
   params.extensions.forEach((ext) => {
     app.get(`/*.${ext}`, MarkdownHandler(params.template))
   })
-  app.use(serveIndex(rootDir, { icons: true, view: 'details' }))
   app.use(express.static(rootDir, { index: false }))
   app.use(express.static(staticDir, { index: false }))
+  app.use(serveIndex(rootDir, { icons: true, view: 'details' }))
   app.listen(params.port)
 
   if (!params.noOpener) {

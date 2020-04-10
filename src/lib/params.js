@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const { currentDir, templateDir } = require('./directory');
+const { rootDir, templateDir } = require('./directory');
 const { existsFile } = require('./file');
 
 class Params {
@@ -110,7 +110,7 @@ class Params {
     if (!existsFile(filepath)) {
       throw new Error(`File not found: ${filepath}`);
     }
-    if (path.relative(currentDir, filepath).match(/\.\./) != null) {
+    if (path.relative(rootDir, filepath).match(/\.\./) != null) {
       throw new Error(`Illegal file path: ${filepath}`);
     }
     return filepath;
@@ -127,8 +127,8 @@ class Params {
   checkTemplate(template) {
     if (existsFile(path.resolve(templateDir, `${template}.html`))) {
       return path.resolve(templateDir, `${template}.html`);
-    } else if (existsFile(path.resolve(currentDir, template))) {
-      return path.resolve(currentDir, template);
+    } else if (existsFile(path.resolve(rootDir, template))) {
+      return path.resolve(rootDir, template);
     }
     throw new Error(`Template file not found: ${template}`);
   }
