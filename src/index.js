@@ -30,7 +30,7 @@ try {
   app.get('/', (_req, res) => res.redirect(params.filepath))
   app.ws('/ws', WebSocketHandler(logger))
   params.extensions.forEach((ext) => {
-    app.get(`/*.${ext}`, MarkdownHandler(params.template))
+    app.get(new RegExp(`^/.+\.${ext}$`), MarkdownHandler(params.template))
   })
   app.use(express.static(rootDir, { index: false }))
   app.use(express.static(staticDir, { index: false }))
