@@ -17,17 +17,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hyiromori/markdown-preview.git"
+    "url": "git+https://github.com/mryhryki/markdown-preview.git"
   },
-  "author": "hyiromori",
+  "author": "mryhryki",
   "license": "MIT",
   "publishConfdddig": {
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/hyiromori/markdown-preview/issues"
+    "url": "https://github.com/mryhryki/markdown-preview/issues"
   },
-  "homepage": "https://github.com/hyiromori/markdown-preview#readme",
+  "homepage": "https://github.com/mryhryki/markdown-preview#readme",
   "keywords": [
     "markdown",
     "preview"
