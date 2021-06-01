@@ -39,7 +39,7 @@
     "opener": "^1.5.2",
     "requires": "^1.0.2",
     "serve-index": "^1.9.1",
-    "ws": "^5.2.2"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "jest": "^26.6.3",
