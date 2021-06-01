@@ -1,10 +1,10 @@
 {
   "name": "@mryhryki/markdown-preview",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Markdown realtime preview on browser",
   "main": "index.js",
   "engines": {
-    "node": ">=14.0.0",
+    "node": ">=12.0.0",
     "npm": ">=6.0.0"
   },
   "bin": {
@@ -37,7 +37,9 @@
     "express-ws": "^4.0.0",
     "log4js": "^6.3.0",
     "opener": "^1.5.2",
-    "serve-index": "^1.9.1"
+    "requires": "^1.0.2",
+    "serve-index": "^1.9.1",
+    "ws": "^5.2.2"
   },
   "devDependencies": {
     "jest": "^26.6.3",
