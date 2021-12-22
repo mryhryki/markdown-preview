@@ -16,7 +16,7 @@
   <script src="/markdown-preview-websocket.js"></script>
   <script type="text/javascript">
     connectMarkdownPreview(({ markdown }) => {
-      document.getElementById('content').innerHTML = marked(markdown);
+      document.getElementById('content').innerHTML = marked.parse(markdown);
       document.querySelectorAll('pre code').forEach(block => hljs.highlightBlock(block));
     });
   </script>
