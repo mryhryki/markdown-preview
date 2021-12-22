@@ -4,14 +4,14 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Demo
 
-![DEMO](https://github.com/hyiromori/markdown-preview/raw/master/gif/demo.gif)
+![DEMO](https://github.com/mryhryki/markdown-preview/raw/master/gif/demo.gif)
 
 ## Usage
 
 ### npx
 
 ```
-$ npx @hyiromori/markdown-preview --port 34567 --file README.md
+$ npx @mryhryki/markdown-preview --port 34567 --file README.md
 
 Root Directory : /current/dir
 Default File   : README.md
@@ -21,9 +21,9 @@ Preview URL    : http://localhost:34567/
 ### npm / yarn
 
 ```
-$ npm install -g @hyiromori/markdown-preview
+$ npm install -g @mryhryki/markdown-preview
 # or
-$ yarn install -g @hyiromori/markdown-preview
+$ yarn install -g @mryhryki/markdown-preview
 
 $ markdown-preview --port 34567 --file README.md
 
