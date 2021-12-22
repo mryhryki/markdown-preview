@@ -4,7 +4,7 @@ const pkg = require('../../package');
 const showUsage = (error = false) => {
   const usage = `
 Usage:
-  npx @hyiromori/markdown-preview [options]
+  npx @mryhryki/markdown-preview [options]
   markdown-preview [options]
 
 Options:
