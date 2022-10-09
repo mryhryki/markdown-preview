@@ -40,7 +40,8 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug",
+    "start": "node ./index.js",
+    "dev": "nodemon --watch ./src/ index.js --no-opener --log-level debug",
     "test": "jest",
     "test:watch": "jest --watchAll"
   }
