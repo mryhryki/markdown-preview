@@ -1,37 +1,32 @@
 {
   "name": "@mryhryki/markdown-preview",
-  "version": "0.3.11",
   "description": "Markdown realtime preview on browser",
-  "main": "index.js",
-  "engines": {
-    "node": ">=12.0.0",
-    "npm": ">=6.0.0"
-  },
-  "bin": {
-    "markdown-preview": "index.js"
-  },
-  "scripts": {
-    "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mryhryki/markdown-preview.git"
-  },
+  "version": "0.3.11",
   "author": "mryhryki",
   "license": "MIT",
-  "publishConfdddig": {
+  "publishConfig": {
     "access": "public"
   },
-  "bugs": {
-    "url": "https://github.com/mryhryki/markdown-preview/issues"
-  },
-  "homepage": "https://github.com/mryhryki/markdown-preview#readme",
   "keywords": [
     "markdown",
     "preview"
   ],
+  "homepage": "https://github.com/mryhryki/markdown-preview#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mryhryki/markdown-preview.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mryhryki/markdown-preview/issues"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
+  "main": "index.js",
+  "bin": {
+    "markdown-preview": "index.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "express-ws": "^5.0.2",
@@ -44,5 +39,10 @@
   "devDependencies": {
     "jest": "^29.1.2",
     "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "nodemon --watch ./src/ index.js --no-opener --log-level debug",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   }
 }
