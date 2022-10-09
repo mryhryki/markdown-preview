@@ -1,5 +1,6 @@
-'use strict';
-const pkg = require('../../package');
+"use strict";
+
+const pkg = require("../../package");
 
 const showUsage = (error = false) => {
   const usage = `

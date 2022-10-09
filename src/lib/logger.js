@@ -1,18 +1,18 @@
-const log4js = require('log4js');
+const log4js = require("log4js");
 
 const getLogger = (logLevel) => {
   log4js.configure({
     appenders: {
       console: {
-        type: 'console',
+        type: "console",
         layout: {
-          type: 'basic',
+          type: "basic",
         },
       },
     },
     categories: {
       default: {
-        appenders: ['console'],
+        appenders: ["console"],
         level: logLevel,
       },
     },

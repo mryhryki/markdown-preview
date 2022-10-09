@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class SocketManager {
   constructor() {
@@ -14,9 +14,7 @@ class SocketManager {
   }
 
   getSockets(filepath) {
-    return this._sockets
-               .filter(({ filepath: fp }) => fp === filepath)
-               .map(s => s.socket);
+    return this._sockets.filter(({ filepath: fp }) => fp === filepath).map((s) => s.socket);
   }
 
   countSocket(filepath = null) {

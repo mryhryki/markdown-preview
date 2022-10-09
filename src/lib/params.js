@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const path = require('path');
-const { rootDir, templateDir } = require('./directory');
-const { existsFile } = require('./file');
+const path = require("path");
+const { rootDir, templateDir } = require("./directory");
+const { existsFile } = require("./file");
 
 class Params {
   constructor(env, argv) {
@@ -21,11 +21,11 @@ class Params {
 
   getDefaultParams() {
     return {
-      filepath: 'README.md',
-      extensions: 'md, markdown',
-      template: 'default',
+      filepath: "README.md",
+      extensions: "md, markdown",
+      template: "default",
       port: 34567,
-      logLevel: 'info',
+      logLevel: "info",
       noOpener: false,
       version: false,
       help: false,
@@ -47,7 +47,7 @@ class Params {
       params.port = env.MARKDOWN_PREVIEW_PORT;
     }
     if (env.MARKDOWN_PREVIEW_NO_OPENER) {
-      params.noOpener = env.MARKDOWN_PREVIEW_NO_OPENER === 'true';
+      params.noOpener = env.MARKDOWN_PREVIEW_NO_OPENER === "true";
     }
     if (env.MARKDOWN_PREVIEW_LOG_LEVEL) {
       params.logLevel = env.MARKDOWN_PREVIEW_LOG_LEVEL;
@@ -59,40 +59,40 @@ class Params {
     const params = {};
     for (let i = 0; i < argv.length; i++) {
       switch (argv[i]) {
-        case '-f':
-        case '--file':
+        case "-f":
+        case "--file":
           params.filepath = argv[i + 1];
           i++;
           break;
-        case '-e':
-        case '--extensions':
+        case "-e":
+        case "--extensions":
           params.extensions = argv[i + 1];
           i++;
           break;
-        case '-t':
-        case '--template':
+        case "-t":
+        case "--template":
           params.template = argv[i + 1];
           i++;
           break;
-        case '-p':
-        case '--port':
+        case "-p":
+        case "--port":
           params.port = argv[i + 1];
           i++;
           break;
-        case '-l':
-        case '--log-level':
+        case "-l":
+        case "--log-level":
           params.logLevel = argv[i + 1];
           i++;
           break;
-        case '--no-opener':
+        case "--no-opener":
           params.noOpener = true;
           break;
-        case '-v':
-        case '--version':
+        case "-v":
+        case "--version":
           params.version = true;
           break;
-        case '-h':
-        case '--help':
+        case "-h":
+        case "--help":
           params.help = true;
           break;
         default:
@@ -101,7 +101,6 @@ class Params {
     }
     return params;
   }
-
 
   checkFilepath(filepath) {
     if (path.isAbsolute(filepath)) {
@@ -117,7 +116,7 @@ class Params {
   }
 
   checkExtensions(extensions) {
-    const extensionList = extensions.split(',').map(ext => ext.trim());
+    const extensionList = extensions.split(",").map((ext) => ext.trim());
     if (extensionList.length === 0) {
       throw new Error(`Extensions is empty: ${extensions}`);
     }
@@ -139,11 +138,10 @@ class Params {
       return intPort;
     }
     throw new Error(`Invalid port: ${port}`);
-  };
-
+  }
 
   checkLogLevel(logLevel) {
-    if (['trace', 'debug', 'info', 'warn', 'error', 'fatal'].includes(logLevel)) {
+    if (["trace", "debug", "info", "warn", "error", "fatal"].includes(logLevel)) {
       return logLevel;
     }
     throw new Error(`Invalid log level: ${logLevel}`);

@@ -1,16 +1,16 @@
-'use strict'
+"use strict";
 
-const path = require('path')
-const { rootDir } = require('./lib/directory')
-const { existsFile } = require('./lib/file')
+const path = require("path");
+const { rootDir } = require("./lib/directory");
+const { existsFile } = require("./lib/file");
 
 const MarkdownHandler = (template) => (req, res, next) => {
-  const filepath = path.resolve(rootDir, decodeURIComponent(req.path.substr(1)))
+  const filepath = path.resolve(rootDir, decodeURIComponent(req.path.substr(1)));
   if (existsFile(filepath)) {
-    res.sendFile(template)
+    res.sendFile(template);
   } else {
-    next()
+    next();
   }
-}
+};
 
-module.exports = MarkdownHandler
+module.exports = MarkdownHandler;

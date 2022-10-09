@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-'use strict';
+"use strict";
 
-require('./src/index');
+require("./src/index");
