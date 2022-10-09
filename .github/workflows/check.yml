@@ -1,0 +1,32 @@
+name: check
+env:
+  TZ: "Asia/Tokyo"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  check_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Update npm
+        run: npm install -g npm
+      - name: install packages
+        run: npm ci
+      - name: lint
+        run: npm run lint
+      - name: test
+        run: npm test

@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    target-branch: main
+    reviewers:
+      - mryhryki
+    assignees:
+      - mryhryki
+    labels:
+      - dependencies
+
