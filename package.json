@@ -32,7 +32,6 @@
     "express-ws": "^5.0.2",
     "log4js": "^6.7.0",
     "opener": "^1.5.2",
-    "requires": "^1.0.2",
     "serve-index": "^1.9.1",
     "ws": "^8.9.0"
   },
