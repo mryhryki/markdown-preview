@@ -8,7 +8,7 @@ const getLogger = require("./lib/logger");
 const { showUsage, showVersion } = require("./lib/show");
 const MarkdownHandler = require("./markdown");
 const WebSocketHandler = require("./websocket");
-const { rootDir, staticDir } = require("./lib/directory");
+const { rootDir, staticDir, markedDir, githubMarkdownDir } = require("./lib/directory");
 const Params = require("./lib/params");
 
 try {
@@ -35,6 +35,8 @@ try {
   app.use(express.static(rootDir, { index: false }));
   app.use(express.static(staticDir, { index: false }));
   app.use(serveIndex(rootDir, { icons: true, view: "details" }));
+  app.use("/marked", express.static(markedDir))
+  app.use("/gmcss", express.static(githubMarkdownDir))
   app.listen(params.port);
 
   if (!params.noOpener) {

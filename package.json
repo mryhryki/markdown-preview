@@ -30,7 +30,9 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-ws": "^5.0.2",
+    "github-markdown-css": "^5.2.0",
     "log4js": "^6.9.1",
+    "marked": "^4.3.0",
     "opener": "^1.5.2",
     "serve-index": "^1.9.1",
     "ws": "^8.13.0"
