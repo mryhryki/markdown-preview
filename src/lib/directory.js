@@ -18,5 +18,5 @@ module.exports = {
   staticDir,
   templateDir,
   markedDir,
-  githubMarkdownDir
+  githubMarkdownDir,
 };
