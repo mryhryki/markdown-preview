@@ -35,8 +35,8 @@ try {
   app.use(express.static(rootDir, { index: false }));
   app.use(express.static(staticDir, { index: false }));
   app.use(serveIndex(rootDir, { icons: true, view: "details" }));
-  app.use("/marked", express.static(markedDir))
-  app.use("/gmcss", express.static(githubMarkdownDir))
+  app.use("/marked", express.static(markedDir));
+  app.use("/gmcss", express.static(githubMarkdownDir));
   app.listen(params.port);
 
   if (!params.noOpener) {
