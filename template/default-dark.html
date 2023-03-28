@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown Preview</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-dark.min.css">
+  <link rel="stylesheet" href="/gmcss/github-markdown-dark.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/github-dark-dimmed.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
 </head>
@@ -12,9 +12,9 @@
   <div class="markdown-body">
     <div id="content"></div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.1.1/marked.min.js"></script>
+  <script src="/marked/marked.min.js"></script>
   <script src="/markdown-preview-websocket.js"></script>
-  <script type="text/javascript">
+  <script>
     connectMarkdownPreview(({ markdown }) => {
       document.getElementById('content').innerHTML = marked.parse(markdown);
       document.querySelectorAll('pre code').forEach(block => hljs.highlightBlock(block));
