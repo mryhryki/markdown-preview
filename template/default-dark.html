@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown Preview</title>
-  <link rel="stylesheet" href="/gmcss/github-markdown-dark.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/github-dark-dimmed.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="/css/github-markdown-dark.min.css">
+  <link rel="stylesheet" href="/css/highlight-github.min.css">
 </head>
 <body style="margin: 0 auto; max-width: 882px; padding: 32px; background-color: #0d1117;">
   <div class="markdown-body">
     <div id="content"></div>
   </div>
-  <script src="/marked/marked.min.js"></script>
   <script src="/markdown-preview-websocket.js"></script>
+  <script src="/javascript/marked.min.js"></script>
+  <script src="/javascript/highlight.min.js"></script>
   <script>
     connectMarkdownPreview(({ markdown }) => {
       document.getElementById('content').innerHTML = marked.parse(markdown);
