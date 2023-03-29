@@ -19,7 +19,8 @@ curl -o "${CSS_DIRECTORY}/github-markdown-light.min.css" "https://cdnjs.cloudfla
 curl -o "${CSS_DIRECTORY}/github-markdown-dark.min.css" "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/${GITHUB_MARKDOWN_LIGHT_VERSION}/github-markdown-dark.min.css"
 
 # https://www.jsdelivr.com/package/npm/highlight.js
-HIGHLIGHT_JS_VERSION="11.7.0"
-curl -o "${JAVASCRIPT_DIRECTORY}/highlight.min.js" "https://cdn.jsdelivr.net/npm/highlight.js@${HIGHLIGHT_JS_VERSION}/lib/index.min.js"
-curl -o "${CSS_DIRECTORY}/highlight-github.min.css" "https://cdn.jsdelivr.net/npm/highlight.js@${HIGHLIGHT_JS_VERSION}/styles/github.min.css"
+echo "highlight.js resources needs manually download from 'https://highlightjs.org/download/'"
+#HIGHLIGHT_JS_VERSION="11.7.0"
+#curl -o "${JAVASCRIPT_DIRECTORY}/highlight.min.js" "https://cdn.jsdelivr.net/npm/highlight.js@${HIGHLIGHT_JS_VERSION}/lib/index.min.js"
+#curl -o "${CSS_DIRECTORY}/highlight-github.min.css" "https://cdn.jsdelivr.net/npm/highlight.js@${HIGHLIGHT_JS_VERSION}/styles/github.min.css"
 
