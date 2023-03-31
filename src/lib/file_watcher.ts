@@ -1,11 +1,23 @@
-"use strict";
+import fs from "fs";
+import path from "path";
+import { rootDir } from "./directory";
+import { Logger } from "./logger";
 
-const fs = require("fs");
-const path = require("path");
-const { rootDir } = require("./directory");
+interface FileInfo {
+  lastModified: number;
+}
 
-class FileWatcher {
-  constructor(logger) {
+export interface FileChangedEvent {
+  filepath: string;
+  markdown: string;
+}
+
+export class FileWatcher {
+  private logger: Logger;
+  private readonly _target: Record</* filepath: */ string, FileInfo>;
+  private _onFileChanged?: (event: FileChangedEvent) => void;
+
+  constructor(logger: Logger) {
     this.logger = logger;
     this._target = {};
     setInterval(() => {
@@ -27,11 +39,11 @@ class FileWatcher {
     }, 250 /* check 4 times per second */);
   }
 
-  onFileChanged(callback) {
+  onFileChanged(callback: (event: FileChangedEvent) => void): void {
     this._onFileChanged = callback;
   }
 
-  addTargetFile(filepath) {
+  addTargetFile(filepath: string): void {
     if (this._target[filepath] != null) return;
     this.logger.debug("Add watch target:", filepath);
     this._target[filepath] = {
@@ -39,21 +51,19 @@ class FileWatcher {
     };
   }
 
-  removeTargetFile(filepath) {
+  removeTargetFile(filepath: string): void {
     if (this._target[filepath] == null) return;
     this.logger.debug("Remove watch target:", filepath);
     delete this._target[filepath];
   }
 
-  getFileLastModified(filepath) {
+  getFileLastModified(filepath: string): number {
     return fs.statSync(path.resolve(rootDir, filepath)).mtimeMs;
   }
 
-  getFileInfo(filepath) {
+  getFileInfo(filepath: string): FileChangedEvent {
     const absolutePath = path.resolve(rootDir, filepath);
     const markdown = fs.readFileSync(absolutePath, "utf-8");
     return { filepath, markdown };
   }
 }
-
-module.exports = FileWatcher;

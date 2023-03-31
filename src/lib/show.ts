@@ -1,8 +1,8 @@
 "use strict";
 
-const pkg = require("../../package");
+import * as pkg from "../../package.json";
 
-const showUsage = (error = false) => {
+export function showUsage(error = false): void {
   const usage = `
 Usage:
   npx @mryhryki/markdown-preview [options]
@@ -17,14 +17,9 @@ Options:
 `;
   console.log(usage);
   process.exit(error ? 1 : 0);
-};
+}
 
-const showVersion = () => {
+export function showVersion(): void {
   console.log(pkg.version);
   process.exit(0);
-};
-
-module.exports = {
-  showUsage,
-  showVersion,
-};
+}
