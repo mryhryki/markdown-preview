@@ -1,5 +1,14 @@
+.editorconfig
+.eslintrc.yaml
+.github/
 .gitignore
-.idea
+.idea/
+.prettierrc.json
+download_static_files.sh
 gif/demo.gif
+jest.config.js
+node_modules/
 package-lock.json
 src/**/*.ts
+test/
+tsconfig.json
