@@ -28,6 +28,7 @@
     "markdown-preview": "index.js"
   },
   "dependencies": {
+    "esbuild": "^0.17.14",
     "express": "^4.18.2",
     "express-ws": "^5.0.2",
     "log4js": "^6.9.1",
@@ -47,7 +48,7 @@
     "lint": "mryhryki-lint",
     "lint:fix": "mryhryki-lint --fix",
     "release": "npm run build # && npm publish",
-    "start": "node ./index.js",
+    "start": "esbuild ./src/index.js | node",
     "test": "jest",
     "test:watch": "jest --watchAll"
   }
