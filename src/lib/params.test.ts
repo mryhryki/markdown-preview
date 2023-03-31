@@ -1,6 +1,6 @@
-const path = require("path");
-const { projectDir } = require("./directory");
-const Params = require("./params");
+import path from "path";
+import { projectDir } from "./directory";
+import { Params } from "./params";
 
 const DEFAULT_VALUES = {
   filepath: "README.md",

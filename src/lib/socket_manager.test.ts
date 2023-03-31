@@ -1,8 +1,9 @@
-const SocketManager = require("./socket_manager");
+import WebSocket from "ws";
+import { SocketManager } from "./socket_manager";
 
-const dummySocket1 = { name: "socket1" };
-const dummySocket2 = { name: "socket2" };
-const dummySocket3 = { name: "socket3" };
+const dummySocket1: WebSocket = { name: "socket1" } as any;
+const dummySocket2: WebSocket = { name: "socket2" } as any;
+const dummySocket3: WebSocket = { name: "socket3" } as any;
 
 const dummyFilepath1 = "file1";
 const dummyFilepath2 = "file2";

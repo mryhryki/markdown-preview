@@ -15,7 +15,7 @@ interface InnerParams {
 }
 
 export class Params {
-  private readonly _params: InnerParams;
+  public _params: InnerParams;
 
   constructor(env: Record<string, string | undefined>, argv: string[]) {
     const obj = Object.assign(this.getDefaultParams(), this.parseEnv(env), this.parseArgv(argv));

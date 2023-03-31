@@ -6,7 +6,7 @@ interface Socket {
 }
 
 export class SocketManager {
-  private _sockets: Socket[];
+  public _sockets: Socket[];
 
   constructor() {
     this._sockets = [];
