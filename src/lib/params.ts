@@ -1,28 +1,40 @@
-"use strict";
+import path from "path";
+import { rootDir, templateDir } from "./directory";
+import { existsFile } from "./file";
+import { getLogLevel, LogLevel } from "./logger";
 
-const path = require("path");
-const { rootDir, templateDir } = require("./directory");
-const { existsFile } = require("./file");
+interface InnerParams {
+  filepath: string;
+  extensions: string[];
+  template: string;
+  port: number;
+  logLevel: LogLevel;
+  noOpener: boolean;
+  version: boolean;
+  help: boolean;
+}
 
-class Params {
-  constructor(env, argv) {
+export class Params {
+  private readonly _params: InnerParams;
+
+  constructor(env: Record<string, string | undefined>, argv: string[]) {
     const obj = Object.assign(this.getDefaultParams(), this.parseEnv(env), this.parseArgv(argv));
     this._params = {
       filepath: this.checkFilepath(obj.filepath),
-      extensions: this.checkExtensions(obj.extensions),
+      extensions: obj.extensions,
       template: this.checkTemplate(obj.template),
       port: this.checkPort(obj.port),
-      logLevel: this.checkLogLevel(obj.logLevel),
+      logLevel: getLogLevel(obj.logLevel),
       noOpener: obj.noOpener,
       version: obj.version,
       help: obj.help,
     };
   }
 
-  getDefaultParams() {
+  getDefaultParams(): InnerParams {
     return {
       filepath: "README.md",
-      extensions: "md, markdown",
+      extensions: ["md", "markdown"],
       template: "default",
       port: 34567,
       logLevel: "info",
@@ -32,31 +44,31 @@ class Params {
     };
   }
 
-  parseEnv(env) {
-    const params = {};
+  parseEnv(env: Record<string, string | undefined>): Partial<InnerParams> {
+    const params: Partial<InnerParams> = {};
     if (env.MARKDOWN_PREVIEW_FILE) {
       params.filepath = env.MARKDOWN_PREVIEW_FILE;
     }
     if (env.MARKDOWN_PREVIEW_EXTENSIONS) {
-      params.extensions = env.MARKDOWN_PREVIEW_EXTENSIONS;
+      params.extensions = this.checkExtensions(env.MARKDOWN_PREVIEW_EXTENSIONS);
     }
     if (env.MARKDOWN_PREVIEW_TEMPLATE) {
       params.template = env.MARKDOWN_PREVIEW_TEMPLATE;
     }
     if (env.MARKDOWN_PREVIEW_PORT) {
-      params.port = env.MARKDOWN_PREVIEW_PORT;
+      params.port = parseInt(env.MARKDOWN_PREVIEW_PORT, 10);
     }
     if (env.MARKDOWN_PREVIEW_NO_OPENER) {
       params.noOpener = env.MARKDOWN_PREVIEW_NO_OPENER === "true";
     }
     if (env.MARKDOWN_PREVIEW_LOG_LEVEL) {
-      params.logLevel = env.MARKDOWN_PREVIEW_LOG_LEVEL;
+      params.logLevel = getLogLevel(env.MARKDOWN_PREVIEW_LOG_LEVEL);
     }
     return params;
   }
 
-  parseArgv(argv) {
-    const params = {};
+  parseArgv(argv: string[]): Partial<InnerParams> {
+    const params: Partial<InnerParams> = {};
     for (let i = 0; i < argv.length; i++) {
       switch (argv[i]) {
         case "-f":
@@ -66,7 +78,7 @@ class Params {
           break;
         case "-e":
         case "--extensions":
-          params.extensions = argv[i + 1];
+          params.extensions = this.checkExtensions(argv[i + 1]);
           i++;
           break;
         case "-t":
@@ -76,12 +88,12 @@ class Params {
           break;
         case "-p":
         case "--port":
-          params.port = argv[i + 1];
+          params.port = parseInt(argv[i + 1], 10);
           i++;
           break;
         case "-l":
         case "--log-level":
-          params.logLevel = argv[i + 1];
+          params.logLevel = getLogLevel(argv[i + 1]);
           i++;
           break;
         case "--no-opener":
@@ -102,7 +114,7 @@ class Params {
     return params;
   }
 
-  checkFilepath(filepath) {
+  checkFilepath(filepath: string) {
     if (path.isAbsolute(filepath)) {
       throw new Error(`Absolute path is prohibited: ${filepath}`);
     }
@@ -115,7 +127,7 @@ class Params {
     return filepath;
   }
 
-  checkExtensions(extensions) {
+  checkExtensions(extensions: string): string[] {
     const extensionList = extensions.split(",").map((ext) => ext.trim());
     if (extensionList.length === 0) {
       throw new Error(`Extensions is empty: ${extensions}`);
@@ -123,7 +135,7 @@ class Params {
     return extensionList;
   }
 
-  checkTemplate(template) {
+  checkTemplate(template: string): string {
     if (existsFile(path.resolve(templateDir, `${template}.html`))) {
       return path.resolve(templateDir, `${template}.html`);
     } else if (existsFile(path.resolve(rootDir, template))) {
@@ -132,52 +144,42 @@ class Params {
     throw new Error(`Template file not found: ${template}`);
   }
 
-  checkPort(port) {
-    const intPort = parseInt(port, 10);
-    if (!isNaN(intPort) && 0 < intPort && intPort <= 65535) {
-      return intPort;
+  checkPort(port: number): number {
+    if (!isNaN(port) && 0 < port && port <= 65535) {
+      return port;
     }
     throw new Error(`Invalid port: ${port}`);
-  }
-
-  checkLogLevel(logLevel) {
-    if (["trace", "debug", "info", "warn", "error", "fatal"].includes(logLevel)) {
-      return logLevel;
-    }
-    throw new Error(`Invalid log level: ${logLevel}`);
   }
 
   get filepath() {
     return this._params.filepath;
   }
 
-  get extensions() {
+  get extensions(): string[] {
     return this._params.extensions;
   }
 
-  get template() {
+  get template(): string {
     return this._params.template;
   }
 
-  get port() {
+  get port(): number {
     return this._params.port;
   }
 
-  get logLevel() {
+  get logLevel(): LogLevel {
     return this._params.logLevel;
   }
 
-  get noOpener() {
+  get noOpener(): boolean {
     return this._params.noOpener;
   }
 
-  get version() {
+  get version(): boolean {
     return this._params.version;
   }
 
-  get help() {
+  get help(): boolean {
     return this._params.help;
   }
 }
-
-module.exports = Params;

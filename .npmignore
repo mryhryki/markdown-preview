@@ -1,4 +1,5 @@
 .gitignore
 .idea
-package-lock.json
 gif/demo.gif
+package-lock.json
+src/**/*.ts

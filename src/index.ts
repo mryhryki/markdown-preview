@@ -1,15 +1,15 @@
 "use strict";
 
-const express = require("express");
-const expressWs = require("express-ws");
-const serveIndex = require("serve-index");
-const opener = require("opener");
-const getLogger = require("./lib/logger");
-const { showUsage, showVersion } = require("./lib/show");
-const MarkdownHandler = require("./markdown");
-const WebSocketHandler = require("./websocket");
-const { rootDir, staticDir } = require("./lib/directory");
-const Params = require("./lib/params");
+import express from "express";
+import expressWs from "express-ws";
+import serveIndex from "serve-index";
+import opener from "opener";
+import { getLogger } from "./lib/logger";
+import { showUsage, showVersion } from "./lib/show";
+import { MarkdownHandler } from "./markdown";
+import { WebSocketHandler } from "./websocket";
+import { rootDir, staticDir } from "./lib/directory";
+import { Params } from "./lib/params";
 
 try {
   const params = new Params(process.env, process.argv.slice(2));
@@ -27,7 +27,10 @@ try {
 
   const app = express();
   expressWs(app);
+
   app.get("/", (_req, res) => res.redirect(params.filepath));
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   app.ws("/ws", WebSocketHandler(logger));
   params.extensions.forEach((ext) => {
     app.get(new RegExp(`^/.+\.${ext}$`), MarkdownHandler(params.template));
@@ -41,6 +44,6 @@ try {
     opener(previewUrl);
   }
 } catch (err) {
-  console.error(err.message);
+  console.error(err);
   showUsage(true);
 }
