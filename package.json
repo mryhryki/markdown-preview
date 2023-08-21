@@ -57,7 +57,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --watch ./src/ --no-opener --log-level debug --exec 'npm start",
+    "dev": "nodemon --watch ./src/ --ext 'ts' --exec 'npm start -- --no-opener --log-level debug'",
     "lint": "eslint ./src/",
     "lint:fix": "eslint ./src/ --fix",
     "release": "npm run build && npm publish",
