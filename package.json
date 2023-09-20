@@ -20,8 +20,8 @@
     "url": "https://github.com/mryhryki/markdown-preview/issues"
   },
   "engines": {
-    "node": ">=12.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "main": "index.js",
   "bin": {
