@@ -73,6 +73,9 @@
     "static/**/*",
     "template/**/*"
   ],
+  "prettier": {
+    "printWidth": 120
+  },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
