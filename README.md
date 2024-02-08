@@ -4,7 +4,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Demo
 
-![DEMO](./gif/demo.gif)
+![DEMO](https://github.com/mryhryki/markdown-preview/assets/12733897/68cb3653-254b-4540-9859-0a7c262736e0)
 
 ## Usage
 
