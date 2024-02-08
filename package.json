@@ -66,5 +66,9 @@
     "test:watch": "jest --watchAll",
     "type": "tsc --noEmit",
     "type:watch": "tsc --noEmit --watch"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
