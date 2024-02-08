@@ -1,6 +1,4 @@
 name: update_packages
-env:
-  TZ: "Asia/Tokyo"
 
 on:
   schedule:
