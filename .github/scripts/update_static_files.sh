@@ -11,7 +11,7 @@ function get_latest_release_version() {
   local REPO="$2"
   curl -L --silent \
        -H "Accept: application/vnd.github+json" \
-       -H "Authorization: Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
+       -H "Authorization: Bearer ${GITHUB_TOKEN}" \
        -H "X-GitHub-Api-Version: 2022-11-28" \
        "https://api.github.com/repos/${OWNER}/${REPO}/releases/latest" |
     jq -r '.tag_name' |
