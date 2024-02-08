@@ -67,6 +67,12 @@
     "type": "tsc --noEmit",
     "type:watch": "tsc --noEmit --watch"
   },
+  "files": [
+    "index.js",
+    "src/**/*.js",
+    "static/**/*",
+    "template/**/*"
+  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
