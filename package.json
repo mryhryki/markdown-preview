@@ -66,5 +66,18 @@
     "test:watch": "jest --watchAll",
     "type": "tsc --noEmit",
     "type:watch": "tsc --noEmit --watch"
+  },
+  "files": [
+    "index.js",
+    "src/**/*.js",
+    "static/**/*",
+    "template/**/*"
+  ],
+  "prettier": {
+    "printWidth": 120
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }

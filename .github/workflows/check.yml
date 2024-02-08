@@ -1,14 +1,10 @@
 name: check
-env:
-  TZ: "Asia/Tokyo"
 
 on:
   push:
     branches:
       - "main"
   pull_request:
-    branches:
-      - "main"
   workflow_dispatch:
 
 jobs:
