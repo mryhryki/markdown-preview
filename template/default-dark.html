@@ -13,11 +13,11 @@
   </div>
   <script src="/markdown-preview-websocket.js"></script>
   <script src="/javascript/marked.min.js"></script>
-  <script src="/javascript/highlight.min.js"></script>
-  <script>
+  <script type="module">
+    import hljs from '/javascript/highlight.min.js';
     connectMarkdownPreview(({ markdown }) => {
       document.getElementById('content').innerHTML = marked.parse(markdown);
-      document.querySelectorAll('pre code').forEach(block => hljs.highlightBlock(block));
+      document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
     });
   </script>
 </body>
