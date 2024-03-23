@@ -13,11 +13,28 @@
   </div>
   <script src="/markdown-preview-websocket.js"></script>
   <script src="/javascript/marked.min.js"></script>
+  <script src="/javascript/mermaid.min.js"></script>
   <script type="module">
     import hljs from '/javascript/highlight.min.js';
+
+    // Setup mermaid
+    mermaid.initialize({startOnLoad: true});
+    const renderer = new marked.Renderer();
+    const originalCode = renderer.code;
+    renderer.code = (code, language) => {
+      if (language === "mermaid") {
+        return `<pre class="mermaid">${code}</pre>`;
+      }
+      return originalCode(code, language);
+    };
+    marked.use({renderer});
+
+    // On markdown update
     connectMarkdownPreview(({ markdown }) => {
       document.getElementById('content').innerHTML = marked.parse(markdown);
-      document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block)
+      });
     });
   </script>
 </body>
