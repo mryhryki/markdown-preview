@@ -30,9 +30,13 @@ echo "github-markdown-css version: ${GITHUB_MARKDOWN_LIGHT_VERSION}"
 curl --silent -o "${CSS_DIRECTORY}/github-markdown-light.min.css" "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/${GITHUB_MARKDOWN_LIGHT_VERSION}/github-markdown-light.min.css"
 curl --silent -o "${CSS_DIRECTORY}/github-markdown-dark.min.css" "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/${GITHUB_MARKDOWN_LIGHT_VERSION}/github-markdown-dark.min.css"
 
-# https://www.jsdelivr.com/package/npm/highlight.js
 HIGHLIGHT_JS_VERSION="$(get_latest_release_version "highlightjs" "highlight.js")"
 echo "highlight.js version: ${HIGHLIGHT_JS_VERSION}"
 curl --silent -o "${JAVASCRIPT_DIRECTORY}/highlight.min.js" "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@${HIGHLIGHT_JS_VERSION}/build/es/highlight.min.js"
 curl --silent -o "${CSS_DIRECTORY}/highlight-github.min.css" "https://cdn.jsdelivr.net/npm/highlight.js@${HIGHLIGHT_JS_VERSION}/styles/github.min.css"
+
+
+MERMAID_JS_VERSION="$(get_latest_release_version "mermaid-js" "mermaid")"
+echo "mermaid.js version: ${MERMAID_JS_VERSION}"
+curl --silent -o "${JAVASCRIPT_DIRECTORY}/mermaid.min.js" "https://cdn.jsdelivr.net/npm/mermaid@${MERMAID_JS_VERSION}/dist/mermaid.min.js"
 
