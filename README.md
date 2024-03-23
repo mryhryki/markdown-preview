@@ -4,7 +4,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Demo
 
-![DEMO](https://github.com/mryhryki/markdown-preview/assets/12733897/68cb3653-254b-4540-9859-0a7c262736e0)
+https://github.com/mryhryki/markdown-preview/assets/12733897/86d27eaa-8b69-48a4-82a5-04f5602925f6
 
 ## Usage
 
