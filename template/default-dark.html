@@ -17,8 +17,7 @@
     <script type="module">
       import hljs from "/javascript/highlight.min.js";
 
-      // Setup mermaid
-      mermaid.initialize({ startOnLoad: true });
+      // Setup marked and mermaid
       const renderer = new marked.Renderer();
       const originalCode = renderer.code;
       renderer.code = (code, language) => {
@@ -30,11 +29,12 @@
       marked.use({ renderer });
 
       // On markdown update
-      connectMarkdownPreview(({ markdown }) => {
+      connectMarkdownPreview(async ({ markdown }) => {
         document.getElementById("content").innerHTML = marked.parse(markdown);
         document.querySelectorAll("pre code").forEach((block) => {
           hljs.highlightElement(block);
         });
+        await mermaid.run();
       });
     </script>
   </body>
