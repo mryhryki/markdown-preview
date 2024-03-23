@@ -26,11 +26,11 @@ $ npm install -g @mryhryki/markdown-preview
 # or
 $ yarn install -g @mryhryki/markdown-preview
 
-$ markdown-preview --file README.md --template default --port 34567 --log-level info --no-opener
+$ markdown-preview --file README.md --template default-dark --port 34567 --log-level info --no-opener
 Root Directory : /current/dir
 Default File   : README.md
 Extensions     : md, markdown
-Template File  : /path/to/template/default.html
+Template File  : /path/to/template/default-dark.html
 Preview URL    : http://localhost:34567
 ```
 
@@ -76,4 +76,30 @@ Sample code is presented below.
     </script>
   </body>
 </html>
+```
+
+## Development
+
+```shell
+$ npm install
+
+# Watch mode
+$ npm run dev
+
+# Build and Run
+$ npm start
+
+# Test
+$ npm test
+$ npm run test:watch
+
+# Type check
+$ npm run type
+$ npm run type:watch
+
+# Check code format
+$ npm run lint
+
+# Formatter
+$ npm run fmt
 ```
