@@ -58,8 +58,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --watch ./src/ --ext 'ts' --exec 'npm start -- --no-opener --log-level debug'",
-    "lint": "eslint ./src/",
-    "lint:fix": "eslint ./src/ --fix",
+    "fmt": "prettier --write ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts --fix",
+    "lint": "prettier --check ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts",
     "release": "npm run build && npm publish",
     "start": "npm run build && node ./index.js",
     "test": "jest",
