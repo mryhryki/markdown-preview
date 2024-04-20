@@ -16,18 +16,15 @@ jobs:
   publish_to_npm:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
       - name: Show environment
-        run: set -x; pwd; ls -la; node -v; npm -v; deno --version;
+        run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Set branch name
         run: |
           echo "BRANCH=release-$(date +'%Y%m%d-%H%M%S')" >> "${GITHUB_ENV}"
@@ -51,7 +48,7 @@ jobs:
           git push origin "release/${VERSION}"
           gh pr create --title "Release ${VERSION}" --body "Created by [publish_to_npm.yaml]()" --reviewer "mryhryki"
         env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
       - name: Publish to npmjs.com
         run: npm publish
       - name: Push tag
