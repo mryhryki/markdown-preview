@@ -25,5 +25,5 @@ jobs:
           branch: "update-static-files"
           delete-branch: true
           branch-suffix: timestamp
-          reviewers: mryhryki
+          assignees: mryhryki
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
