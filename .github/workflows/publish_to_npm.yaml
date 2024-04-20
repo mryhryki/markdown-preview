@@ -50,6 +50,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Publish to npmjs.com
-        run: npm publish
+        run: |
+          npm ci
+          npm run release
       - name: Push tag
         run: git push --tags
