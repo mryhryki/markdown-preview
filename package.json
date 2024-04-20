@@ -41,7 +41,7 @@
     "@types/jest": "^29.5.12",
     "@types/opener": "^1.4.3",
     "@types/serve-index": "^1.9.4",
-    "eslint": "^9.1.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^28.2.0",
     "eslint-plugin-node": "^11.1.0",
