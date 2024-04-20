@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_branch:
+  update_packages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

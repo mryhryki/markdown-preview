@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
+  update_static_files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
