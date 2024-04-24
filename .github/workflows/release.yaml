@@ -1,4 +1,4 @@
-name: publish_to_npm
+name: release
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ on:
           - patch
 
 jobs:
-  publish_to_npm:
+  release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -46,7 +46,7 @@ jobs:
         run: |
           git switch -c "release/${VERSION}"
           git push origin "release/${VERSION}"
-          gh pr create --title "Release ${VERSION}" --body "Created by [publish_to_npm.yaml](https://github.com/mryhryki/markdown-preview/blob/main/.github/workflows/publish_to_npm.yaml)" --reviewer "mryhryki"
+          gh pr create --title "Release ${VERSION}" --body "Created by [release.yaml](https://github.com/mryhryki/markdown-preview/blob/main/.github/workflows/release.yaml)" --reviewer "mryhryki"
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Publish to npmjs.com
