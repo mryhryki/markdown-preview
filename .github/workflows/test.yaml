@@ -12,8 +12,13 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Test
         run: |
           BRANCH_NAME="test/$(date +'%Y%m%d-%H%M%S')"
           echo "${BRANCH_NAME}"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git switch -c "${BRANCH_NAME}"
+          git commit --allow-empty -m "Test"
+          git push -u origin "${BRANCH_NAME}"
