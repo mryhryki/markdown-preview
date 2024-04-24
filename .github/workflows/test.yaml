@@ -1,0 +1,19 @@
+name: test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test
+        run: |
+          BRANCH_NAME="test/$(date +'%Y%m%d-%H%M%S')"
+          echo "${BRANCH_NAME}"
