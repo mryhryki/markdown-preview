@@ -39,8 +39,9 @@ jobs:
           echo VERSION="v$(cat package.json | jq -r '.version')" >> "${GITHUB_ENV}"
       - name: Publish to npmjs.com
         run: |
-          npm ci
-          npm run release
+          # TODO: enable this step
+          echo npm ci
+          echo npm run release
       - name: Push tag to GitHub
         run: |
           git push
