@@ -46,7 +46,9 @@ jobs:
           npm ci
           npm run release
       - name: Push tag to GitHub
-        run: git push --tags
+        run: |
+          git push
+          git push --tags
       - name: Create Release to GitHub
         run: |
           gh release create "${VERSION}" --generate-notes
