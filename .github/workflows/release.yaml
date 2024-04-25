@@ -19,7 +19,7 @@ jobs:
       contents: write
       pull-requests: write
     env:
-      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+#      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
       - name: Checkout
