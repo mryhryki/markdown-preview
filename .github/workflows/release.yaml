@@ -18,17 +18,16 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    env:
-      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
-      - name: Configure git
+      - name: Setup Git
         run: |
           git config user.name "mryhryki"
           git config user.email "mryhryki@gmail.com"
@@ -53,3 +52,5 @@ jobs:
       - name: Create Release to GitHub
         run: |
           gh release create "${VERSION}" --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
