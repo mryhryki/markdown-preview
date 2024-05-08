@@ -1,5 +1,6 @@
 node_modules
 src/**/*.js
+script/**/*.js
 
 static/**
 !static/markdown-preview-websocket.js
