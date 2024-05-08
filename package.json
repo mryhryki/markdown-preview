@@ -1,6 +1,6 @@
 {
   "name": "@mryhryki/markdown-preview",
-  "description": "Markdown realtime preview on browser",
+  "description": "Markdown realtime preview on browser with your favorite editor",
   "version": "0.5.9",
   "author": "mryhryki",
   "license": "MIT",
@@ -26,6 +26,19 @@
   "main": "index.js",
   "bin": {
     "markdown-preview": "index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:css": "github-markdown-css > ./static/github.css",
+    "dev": "nodemon --watch ./src/ --ext 'ts' --exec 'npm start -- --no-opener --log-level debug'",
+    "fmt": "prettier --write ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts --fix",
+    "lint": "prettier --check ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts",
+    "release": "npm run build && npm publish",
+    "start": "npm run build && node ./index.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "type": "tsc --noEmit",
+    "type:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "express": "^4.19.2",
@@ -55,19 +68,6 @@
     "nodemon": "^3.1.0",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.5"
-  },
-  "scripts": {
-    "build": "tsc",
-    "build:css": "github-markdown-css > ./static/github.css",
-    "dev": "nodemon --watch ./src/ --ext 'ts' --exec 'npm start -- --no-opener --log-level debug'",
-    "fmt": "prettier --write ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts --fix",
-    "lint": "prettier --check ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts",
-    "release": "npm run build && npm publish",
-    "start": "npm run build && node ./index.js",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
-    "type": "tsc --noEmit",
-    "type:watch": "tsc --noEmit --watch"
   },
   "files": [
     "index.js",
