@@ -49,7 +49,6 @@ Preview URL    : http://localhost:34567
 ### *1: Defined Template Names
 
 - `default`
-- `default-dark`
 
 ### *2: How to create a template file
 
