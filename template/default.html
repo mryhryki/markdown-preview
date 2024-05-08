@@ -4,37 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markdown Preview</title>
-    <link rel="stylesheet" href="/css/github-markdown-light.min.css" />
-    <link rel="stylesheet" href="/css/highlight-github.min.css" />
+    <link rel="stylesheet" href="/github.css" />
   </head>
   <body style="margin: 0 auto; max-width: 882px; padding: 32px">
     <div class="markdown-body">
       <div id="content"></div>
     </div>
-    <script src="/markdown-preview-websocket.js"></script>
-    <script src="/javascript/marked.min.js"></script>
-    <script src="/javascript/mermaid.min.js"></script>
     <script type="module">
-      import hljs from "/javascript/highlight.min.js";
-
-      // Setup marked and mermaid
-      const renderer = new marked.Renderer();
-      const originalCode = renderer.code;
-      renderer.code = (code, language) => {
-        if (language === "mermaid") {
-          return `<pre class="mermaid">${code}</pre>`;
-        }
-        return originalCode(code, language);
-      };
-      marked.use({ renderer });
+      import { connectMarkdownPreview } from "/markdown-preview-websocket.js";
+      import { convertMarkdownToHtml } from "/convert-markdown.js";
 
       // On markdown update
       connectMarkdownPreview(async ({ markdown }) => {
-        document.getElementById("content").innerHTML = marked.parse(markdown);
-        document.querySelectorAll("pre code").forEach((block) => {
-          hljs.highlightElement(block);
-        });
-        await mermaid.run();
+        document.getElementById("content").innerHTML = await convertMarkdownToHtml(markdown);
       });
     </script>
   </body>
