@@ -1,8 +1,9 @@
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
+import mermaid from "mermaid";
 
-export const convertMarkdownToHtml = async (markdown: string): Promise<string> => {
+export const convertMarkdownToHtml = async (element: HTMLElement, markdown: string): Promise<void> => {
   // https://github.com/markedjs/marked-highlight?tab=readme-ov-file#usage
   const marked = new Marked(
     markedHighlight({
@@ -22,5 +23,10 @@ export const convertMarkdownToHtml = async (markdown: string): Promise<string> =
     return originalCode(code, language, escaped);
   };
   marked.use({ renderer });
-  return marked.parse(markdown);
+  element.innerHTML = await marked.parse(markdown);
+
+  // document.querySelectorAll("pre code").forEach((block) => {
+  //   hljs.highlightElement(block);
+  // });
+  await mermaid.run();
 };
