@@ -31,7 +31,6 @@
     "express": "^4.19.2",
     "express-ws": "^5.0.2",
     "generate-github-markdown-css": "^6.2.1",
-    "github-markdown-css": "^5.5.1",
     "log4js": "^6.9.1",
     "opener": "^1.5.2",
     "serve-index": "^1.9.1",
