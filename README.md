@@ -66,12 +66,11 @@ Sample code is presented below.
   </head>
   <body>
     <pre id="raw-markdown"></pre>
-    <script src="/markdown-preview-websocket.js"></script>
-    <script type="text/javascript">
-      connectMarkdownPreview((changedEvent) => {
-        const { markdown } = changedEvent;
+    <script type="module">
+      import { connectMarkdownPreview } from "/markdown-preview-websocket.js";
+      connectMarkdownPreview(({ markdown }) => {
         document.getElementById('raw-markdown').innerHTML =
-            markdown.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          markdown.replace(/</g, '&lt;').replace(/>/g, '&gt;');
       });
     </script>
   </body>
