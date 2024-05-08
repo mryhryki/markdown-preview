@@ -16,7 +16,7 @@
       import { convertMarkdownToHtml } from "/convert-markdown.js";
 
       connectMarkdownPreview(async ({ markdown }) => {
-        document.getElementById("content").innerHTML = await convertMarkdownToHtml(markdown);
+        await convertMarkdownToHtml(document.getElementById("content"), markdown);
       });
     </script>
   </body>
