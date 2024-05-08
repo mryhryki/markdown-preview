@@ -29,7 +29,7 @@
   },
   "scripts": {
     "build": "tsc src/**/*.ts",
-    "build:css": "cp ./node_modules/github-markdown-css/github-markdown.css ./static/github-markdown.css && cp ./node_modules/highlight.js/styles/github.css ./static/highlightjs-github.css",
+    "build:css": "cp ./node_modules/github-markdown-css/github-markdown.css ./static/github-markdown.css && cp ./node_modules/highlight.js/styles/github.css ./static/highlightjs-github.css && cp ./node_modules/highlight.js/styles/github-dark.css ./static/highlightjs-github-dark.css",
     "build:js": "esbuild --bundle --platform=browser --format=esm --outfile=./static/convert-markdown.js ./script/convert-markdown.ts",
     "dev": "nodemon --watch ./src/ --ext 'ts' --exec 'npm start -- --no-opener --log-level debug'",
     "fmt": "prettier --write ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts --fix",
