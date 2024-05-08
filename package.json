@@ -30,7 +30,7 @@
   "scripts": {
     "build": "tsc",
     "build:css": "github-markdown-css > ./static/github.css",
-    "build:js": "esbuild --bundle --platform=browser --outfile=./static/markdown.js ./script/markdown.ts",
+    "build:js": "esbuild --bundle --platform=browser --format=esm --outfile=./static/convert-markdown.js ./script/convert-markdown.ts",
     "dev": "nodemon --watch ./src/ --ext 'ts' --exec 'npm start -- --no-opener --log-level debug'",
     "fmt": "prettier --write ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts --fix",
     "lint": "prettier --check ./src/**/*.ts ./**/*.html && eslint ./src/**/*.ts",
