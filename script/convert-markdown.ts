@@ -1,7 +1,6 @@
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import { EmojiToken, markedEmoji } from "marked-emoji";
-import unicodeEmojiJson from "unicode-emoji-json/data-by-emoji.json";
 import emojiLib from "emojilib";
 import hljs from "highlight.js";
 import mermaid from "mermaid";
