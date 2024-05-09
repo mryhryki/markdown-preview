@@ -1,10 +1,13 @@
-# markdown-preview
+# markdown-preview!
 
 Markdown realtime preview on browser with your favorite editor.
 
 ## Demo
 
-https://github.com/mryhryki/markdown-preview/assets/12733897/86d27eaa-8b69-48a4-82a5-04f5602925f6
+<video 
+  style="max-width: 100%; object-fit: contain;"
+  src="https://github.com/mryhryki/markdown-preview/assets/12733897/86d27eaa-8b69-48a4-82a5-04f5602925f6"
+  controls></video>
 
 ## Usage
 
