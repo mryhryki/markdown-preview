@@ -4,7 +4,10 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Demo
 
-https://github.com/mryhryki/markdown-preview/assets/12733897/86d27eaa-8b69-48a4-82a5-04f5602925f6
+<video 
+  style="max-width: 100%; object-fit: contain;"
+  src="https://github.com/mryhryki/markdown-preview/assets/12733897/8c7afd39-4d02-4e9a-b84f-863f11630e6b"
+  controls></video>
 
 ## Usage
 
@@ -12,6 +15,7 @@ https://github.com/mryhryki/markdown-preview/assets/12733897/86d27eaa-8b69-48a4-
 
 ```shell
 $ npx @mryhryki/markdown-preview --file README.md --template default --port 34567 --log-level info --no-opener
+Version        : v0.6.0
 Root Directory : /current/dir
 Default File   : README.md
 Extensions     : md, markdown
@@ -27,6 +31,7 @@ $ npm install -g @mryhryki/markdown-preview
 $ yarn install -g @mryhryki/markdown-preview
 
 $ markdown-preview --file README.md --template default-dark --port 34567 --log-level info --no-opener
+Version        : v0.6.0
 Root Directory : /current/dir
 Default File   : README.md
 Extensions     : md, markdown
