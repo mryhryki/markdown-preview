@@ -20,7 +20,7 @@ Options:
 }
 
 export function getVersion(): string {
-  return pkg.version;
+  return `v${pkg.version}`;
 }
 
 export function showVersion(): void {
