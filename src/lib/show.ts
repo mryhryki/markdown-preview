@@ -19,7 +19,11 @@ Options:
   process.exit(error ? 1 : 0);
 }
 
+export function getVersion(): string {
+  return pkg.version;
+}
+
 export function showVersion(): void {
-  console.log(pkg.version);
+  console.log(getVersion());
   process.exit(0);
 }
