@@ -1,4 +1,4 @@
-# markdown-preview!
+# markdown-preview
 
 Markdown realtime preview on browser with your favorite editor.
 
