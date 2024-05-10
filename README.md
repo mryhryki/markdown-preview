@@ -4,7 +4,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Concept
 
-- `(TODO)`
+- x
 
 ## Demo
 
