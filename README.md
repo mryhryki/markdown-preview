@@ -6,7 +6,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 <video 
   style="max-width: 100%; object-fit: contain;"
-  src="https://github.com/mryhryki/markdown-preview/assets/12733897/86d27eaa-8b69-48a4-82a5-04f5602925f6"
+  src="https://github.com/mryhryki/markdown-preview/assets/12733897/8c7afd39-4d02-4e9a-b84f-863f11630e6b"
   controls></video>
 
 ## Usage
