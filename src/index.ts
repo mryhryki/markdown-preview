@@ -5,7 +5,7 @@ import expressWs from "express-ws";
 import serveIndex from "serve-index";
 import opener from "opener";
 import { getLogger } from "./lib/logger";
-import { showUsage, showVersion } from "./lib/show";
+import { getVersion, showUsage, showVersion } from "./lib/show";
 import { MarkdownHandler } from "./markdown";
 import { WebSocketHandler } from "./websocket";
 import { rootDir, staticDir } from "./lib/directory";
@@ -19,6 +19,7 @@ try {
   const logger = getLogger(params.logLevel);
   const previewUrl = `http://localhost:${params.port}`;
 
+  console.log("Version        :", getVersion());
   console.log("Root Directory :", rootDir);
   console.log("Default File   :", params.filepath);
   console.log("Extensions     :", params.extensions.join(", "));
