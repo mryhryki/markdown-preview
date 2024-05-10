@@ -15,6 +15,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 ```shell
 $ npx @mryhryki/markdown-preview --file README.md --template default --port 34567 --log-level info --no-opener
+Version        : v0.6.0
 Root Directory : /current/dir
 Default File   : README.md
 Extensions     : md, markdown
@@ -30,6 +31,7 @@ $ npm install -g @mryhryki/markdown-preview
 $ yarn install -g @mryhryki/markdown-preview
 
 $ markdown-preview --file README.md --template default-dark --port 34567 --log-level info --no-opener
+Version        : v0.6.0
 Root Directory : /current/dir
 Default File   : README.md
 Extensions     : md, markdown
