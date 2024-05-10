@@ -19,7 +19,7 @@ try {
   const logger = getLogger(params.logLevel);
   const previewUrl = `http://localhost:${params.port}`;
 
-  console.log("Version        :", `v${getVersion()}`);
+  console.log("Version        :", getVersion());
   console.log("Root Directory :", rootDir);
   console.log("Default File   :", params.filepath);
   console.log("Extensions     :", params.extensions.join(", "));
