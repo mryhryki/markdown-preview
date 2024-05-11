@@ -6,6 +6,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 - Execute immediately with `npx`.
 - Offline support if installed.
+- You can create your own template easily.
 
 ## Demo
 
@@ -111,3 +112,7 @@ $ npm run lint
 # Formatter
 $ npm run fmt
 ```
+
+## Release
+
+Run [release](https://github.com/mryhryki/markdown-preview/actions/workflows/release.yaml) workflow.
