@@ -4,7 +4,8 @@ Markdown realtime preview on browser with your favorite editor.
 
 ## Concept
 
-- x
+- Execute immediately with `npx`.
+- Offline support if installed.
 
 ## Demo
 
