@@ -63,10 +63,10 @@ Preview URL    : http://localhost:34567
 
 ### *2: How to create a template file
 
-Creating a template file is easy.
-At a minimum, all you need to do is load `/markdown-preview-websocket.js` and pass a callback function with the necessary processing to `connectMarkdownPreview`.
+Creating template files is easy.
+You just need to load `/markdown-preview-websocket.js` and add a callback to `connectMarkdownPreview`.
 
-Sample code is presented below.
+A simple example code is below:
 
 ```html
 <!doctype html>
