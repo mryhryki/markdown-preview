@@ -28,7 +28,7 @@ Template File  : /path/to/template/default.html
 Preview URL    : http://localhost:34567
 ```
 
-### npm / yarn
+### npm / yarn (install)
 
 ```shell
 $ npm install -g @mryhryki/markdown-preview
