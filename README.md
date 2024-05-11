@@ -6,7 +6,7 @@ Markdown realtime preview on browser with your favorite editor.
 
 - Execute immediately with `npx`.
 - Offline support if installed.
-- You can create your own template easily.
+- [You can create your own template easily.](#2-how-to-create-a-template-file)
 
 ## Demo
 
