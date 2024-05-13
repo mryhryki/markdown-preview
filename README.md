@@ -2,6 +2,12 @@
 
 Markdown realtime preview on browser with your favorite editor.
 
+## Concept
+
+- Execute immediately with [npx](#npx).
+- Offline support if [installed](#npm--yarn-install).
+- [You can create your own template easily.](#2-how-to-create-a-template-file)
+
 ## Demo
 
 <video 
@@ -14,7 +20,7 @@ Markdown realtime preview on browser with your favorite editor.
 ### npx
 
 ```shell
-$ npx @mryhryki/markdown-preview --file README.md --template default --port 34567 --log-level info --no-opener
+$ npx @mryhryki/markdown-preview
 Version        : v0.6.0
 Root Directory : /current/dir
 Default File   : README.md
@@ -23,14 +29,14 @@ Template File  : /path/to/template/default.html
 Preview URL    : http://localhost:34567
 ```
 
-### npm / yarn
+### npm / yarn (install)
 
 ```shell
 $ npm install -g @mryhryki/markdown-preview
 # or
 $ yarn install -g @mryhryki/markdown-preview
 
-$ markdown-preview --file README.md --template default-dark --port 34567 --log-level info --no-opener
+$ markdown-preview
 Version        : v0.6.0
 Root Directory : /current/dir
 Default File   : README.md
@@ -57,10 +63,9 @@ Preview URL    : http://localhost:34567
 
 ### *2: How to create a template file
 
-Creating a template file is easy.
-At a minimum, all you need to do is load `/markdown-preview-websocket.js` and pass a callback function with the necessary processing to `connectMarkdownPreview`.
+You just need to load `/markdown-preview-websocket.js` and register a callback to `connectMarkdownPreview`.
 
-Sample code is presented below.
+A simple example code is below:
 
 ```html
 <!doctype html>
@@ -106,3 +111,7 @@ $ npm run lint
 # Formatter
 $ npm run fmt
 ```
+
+## Release
+
+Run [release](https://github.com/mryhryki/markdown-preview/actions/workflows/release.yaml) workflow.
