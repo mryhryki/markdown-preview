@@ -5,7 +5,7 @@ Markdown realtime preview on browser with your favorite editor.
 ## Concept
 
 - Execute immediately with `npx`.
-- Offline support if installed.
+- Offline support if [installed](#npm--yarn-install).
 - [You can create your own template easily.](#2-how-to-create-a-template-file)
 
 ## Demo
