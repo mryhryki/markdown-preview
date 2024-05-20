@@ -1,7 +1,7 @@
 {
   "name": "@mryhryki/markdown-preview",
   "description": "Markdown realtime preview on browser with your favorite editor",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "mryhryki",
   "license": "MIT",
   "publishConfig": {
