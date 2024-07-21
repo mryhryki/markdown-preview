@@ -1,4 +1,4 @@
-import WebSocket from "ws";
+import type WebSocket from "ws";
 
 interface Socket {
   filepath: string;
@@ -21,7 +21,9 @@ export class SocketManager {
   }
 
   getSockets(filepath: string) {
-    return this._sockets.filter(({ filepath: fp }) => fp === filepath).map((s) => s.socket);
+    return this._sockets
+      .filter(({ filepath: fp }) => fp === filepath)
+      .map((s) => s.socket);
   }
 
   countSocket(filepath: string | null = null) {

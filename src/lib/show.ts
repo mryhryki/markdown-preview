@@ -1,5 +1,3 @@
-"use strict";
-
 import * as pkg from "../../package.json";
 
 export function showUsage(error = false): void {

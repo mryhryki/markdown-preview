@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 
 export function existsFile(filepath: string): boolean {
   try {

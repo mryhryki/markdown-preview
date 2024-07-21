@@ -1,9 +1,12 @@
-import WebSocket from "ws";
+import type WebSocket from "ws";
 import { SocketManager } from "./socket_manager";
 
-const dummySocket1: WebSocket = { name: "socket1" } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
-const dummySocket2: WebSocket = { name: "socket2" } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
-const dummySocket3: WebSocket = { name: "socket3" } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: It is used for testing only.
+const dummySocket1: WebSocket = { name: "socket1" } as any;
+// biome-ignore lint/suspicious/noExplicitAny: It is used for testing only.
+const dummySocket2: WebSocket = { name: "socket2" } as any;
+// biome-ignore lint/suspicious/noExplicitAny: It is used for testing only.
+const dummySocket3: WebSocket = { name: "socket3" } as any;
 
 const dummyFilepath1 = "file1";
 const dummyFilepath2 = "file2";
@@ -24,10 +27,17 @@ describe("SocketManager", () => {
     expect(socketManager._sockets).toEqual([dummyInfo1, dummyInfo2]);
 
     socketManager.addSocket(dummySocket3, dummyFilepath2);
-    expect(socketManager._sockets).toEqual([dummyInfo1, dummyInfo2, dummyInfo3]);
+    expect(socketManager._sockets).toEqual([
+      dummyInfo1,
+      dummyInfo2,
+      dummyInfo3,
+    ]);
 
     expect(socketManager.getSockets(dummyFilepath1)).toEqual([dummySocket1]);
-    expect(socketManager.getSockets(dummyFilepath2)).toEqual([dummySocket2, dummySocket3]);
+    expect(socketManager.getSockets(dummyFilepath2)).toEqual([
+      dummySocket2,
+      dummySocket3,
+    ]);
     expect(socketManager.countSocket()).toEqual(3);
     expect(socketManager.countSocket(dummyFilepath1)).toEqual(1);
     expect(socketManager.countSocket(dummyFilepath2)).toEqual(2);

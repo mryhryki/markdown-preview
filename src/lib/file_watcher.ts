@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { rootDir } from "./directory";
-import { Logger } from "./logger";
+import type { Logger } from "./logger";
 
 interface FileInfo {
   lastModified: number;
@@ -21,7 +21,7 @@ export class FileWatcher {
     this.logger = logger;
     this._target = {};
     setInterval(() => {
-      Object.keys(this._target).forEach((filepath) => {
+      for (const filepath in this._target) {
         try {
           const fileinfo = this._target[filepath];
           const currentLastModified = this.getFileLastModified(filepath);
@@ -35,7 +35,7 @@ export class FileWatcher {
         } catch (err) {
           console.error(err);
         }
-      });
+      }
     }, 250 /* check 4 times per second */);
   }
 
