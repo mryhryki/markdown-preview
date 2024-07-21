@@ -1,7 +1,7 @@
-import path from "path";
+import path from "node:path";
 import { rootDir, templateDir } from "./directory";
 import { existsFile } from "./file";
-import { getLogLevel, LogLevel } from "./logger";
+import { type LogLevel, getLogLevel } from "./logger";
 
 interface InnerParams {
   filepath: string;
@@ -18,7 +18,11 @@ export class Params {
   public _params: InnerParams;
 
   constructor(env: Record<string, string | undefined>, argv: string[]) {
-    const obj = Object.assign(this.getDefaultParams(), this.parseEnv(env), this.parseArgv(argv));
+    const obj = Object.assign(
+      this.getDefaultParams(),
+      this.parseEnv(env),
+      this.parseArgv(argv),
+    );
     this._params = {
       filepath: this.checkFilepath(obj.filepath),
       extensions: obj.extensions,
@@ -56,7 +60,7 @@ export class Params {
       params.template = env.MARKDOWN_PREVIEW_TEMPLATE;
     }
     if (env.MARKDOWN_PREVIEW_PORT) {
-      params.port = parseInt(env.MARKDOWN_PREVIEW_PORT, 10);
+      params.port = Number.parseInt(env.MARKDOWN_PREVIEW_PORT, 10);
     }
     if (env.MARKDOWN_PREVIEW_NO_OPENER) {
       params.noOpener = env.MARKDOWN_PREVIEW_NO_OPENER === "true";
@@ -88,7 +92,7 @@ export class Params {
           break;
         case "-p":
         case "--port":
-          params.port = parseInt(argv[i + 1], 10);
+          params.port = Number.parseInt(argv[i + 1], 10);
           i++;
           break;
         case "-l":
@@ -138,14 +142,15 @@ export class Params {
   checkTemplate(template: string): string {
     if (existsFile(path.resolve(templateDir, `${template}.html`))) {
       return path.resolve(templateDir, `${template}.html`);
-    } else if (existsFile(path.resolve(rootDir, template))) {
+    }
+    if (existsFile(path.resolve(rootDir, template))) {
       return path.resolve(rootDir, template);
     }
     throw new Error(`Template file not found: ${template}`);
   }
 
   checkPort(port: number): number {
-    if (!isNaN(port) && 0 < port && port <= 65535) {
+    if (!Number.isNaN(port) && 0 < port && port <= 65535) {
       return port;
     }
     throw new Error(`Invalid port: ${port}`);

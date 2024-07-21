@@ -1,4 +1,4 @@
-import log4js, { Logger as LoggerType } from "log4js";
+import log4js, { type Logger as LoggerType } from "log4js";
 
 const LogLevels = ["trace", "debug", "info", "warn", "error", "fatal"] as const;
 export type LogLevel = (typeof LogLevels)[number];

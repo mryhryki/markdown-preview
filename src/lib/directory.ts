@@ -1,6 +1,4 @@
-"use strict";
-
-import path from "path";
+import path from "node:path";
 
 export const rootDir = process.cwd();
 export const projectDir = path.resolve(__dirname, "..", "..");
