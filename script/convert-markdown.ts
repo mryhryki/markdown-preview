@@ -1,11 +1,14 @@
-import { Marked } from "marked";
-import { markedHighlight } from "marked-highlight";
-import { EmojiToken, markedEmoji } from "marked-emoji";
 import emojiLib from "emojilib";
 import hljs from "highlight.js";
+import { Marked } from "marked";
+import { type EmojiToken, markedEmoji } from "marked-emoji";
+import { markedHighlight } from "marked-highlight";
 import mermaid from "mermaid";
 
-export const convertMarkdownToHtml = async (element: HTMLElement, markdown: string): Promise<void> => {
+export const convertMarkdownToHtml = async (
+  element: HTMLElement,
+  markdown: string,
+): Promise<void> => {
   // https://github.com/markedjs/marked-highlight?tab=readme-ov-file#usage
   const marked = new Marked(
     markedHighlight({
@@ -21,13 +24,15 @@ export const convertMarkdownToHtml = async (element: HTMLElement, markdown: stri
   const options = {
     emojis: Object.entries(emojiLib).reduce(
       (dict, [emoji, keywords]) => {
-        keywords.forEach((keyword) => {
+        for (const keyword of keywords) {
           if (dict[keyword] == null) {
             dict[keyword] = emoji;
           } else {
-            console.warn(`Duplicate emoji (${dict[keyword]}) for keyword: ${keyword} ${emoji}`);
+            console.warn(
+              `Duplicate emoji (${dict[keyword]}) for keyword: ${keyword} ${emoji}`,
+            );
           }
-        });
+        }
         return dict;
       },
       {} as Record<string, string>,
