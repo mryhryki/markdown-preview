@@ -58,9 +58,9 @@ export const convertMarkdownToHtml = async (
   marked.use({
     renderer: {
       code: (token: Tokens.Code) => {
-        const { lang, raw } = token;
+        const { lang, text } = token;
         if (lang === "mermaid") {
-          return `<pre class="mermaid">${raw}</pre>`;
+          return `<pre class="mermaid">${text}</pre>`;
         }
         return false;
       },
