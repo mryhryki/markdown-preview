@@ -1,13 +1,16 @@
 {
   "name": "@mryhryki/markdown-preview",
   "description": "Markdown realtime preview on browser with your favorite editor",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "author": "mryhryki",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "keywords": ["markdown", "preview"],
+  "keywords": [
+    "markdown",
+    "preview"
+  ],
   "homepage": "https://github.com/mryhryki/markdown-preview#readme",
   "repository": {
     "type": "git",
@@ -66,7 +69,12 @@
     "ts-jest": "^29.2.4",
     "typescript": "^5.5.4"
   },
-  "files": ["index.js", "src/**/*.js", "static/**/*", "template/**/*"],
+  "files": [
+    "index.js",
+    "src/**/*.js",
+    "static/**/*",
+    "template/**/*"
+  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
