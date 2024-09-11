@@ -7,10 +7,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "markdown",
-    "preview"
-  ],
+  "keywords": ["markdown", "preview"],
   "homepage": "https://github.com/mryhryki/markdown-preview#readme",
   "repository": {
     "type": "git",
@@ -42,7 +39,7 @@
     "type:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^5.0.0",
     "express-ws": "^5.0.2",
     "log4js": "^6.9.1",
     "opener": "^1.5.2",
@@ -69,12 +66,7 @@
     "ts-jest": "^29.2.4",
     "typescript": "^5.5.4"
   },
-  "files": [
-    "index.js",
-    "src/**/*.js",
-    "static/**/*",
-    "template/**/*"
-  ],
+  "files": ["index.js", "src/**/*.js", "static/**/*", "template/**/*"],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
