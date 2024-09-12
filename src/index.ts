@@ -1,15 +1,13 @@
-"use strict";
-
 import express from "express";
 import expressWs from "express-ws";
-import serveIndex from "serve-index";
 import opener from "opener";
+import serveIndex from "serve-index";
+import { rootDir, staticDir } from "./lib/directory";
 import { getLogger } from "./lib/logger";
+import { Params } from "./lib/params";
 import { getVersion, showUsage, showVersion } from "./lib/show";
 import { MarkdownHandler } from "./markdown";
 import { WebSocketHandler } from "./websocket";
-import { rootDir, staticDir } from "./lib/directory";
-import { Params } from "./lib/params";
 
 try {
   const params = new Params(process.env, process.argv.slice(2));
@@ -33,9 +31,9 @@ try {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   app.ws("/ws", WebSocketHandler(logger));
-  params.extensions.forEach((ext) => {
+  for (const ext of params.extensions) {
     app.get(new RegExp(`^/.+\.${ext}$`), MarkdownHandler(params.template));
-  });
+  }
   app.use(express.static(rootDir, { index: false }));
   app.use(express.static(staticDir, { index: false }));
   app.use(serveIndex(rootDir, { icons: true, view: "details" }));
