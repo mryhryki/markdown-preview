@@ -69,7 +69,7 @@ export class FileWatcher {
   getFileInfo(filepath: string): FileChangedEvent {
     const absolutePath = path.resolve(rootDir, filepath);
     if (!absolutePath.startsWith(rootDir)) {
-      throw new Error("Invalid file path: " + filepath);
+      throw new Error(`Invalid file path: ${filepath}`);
     }
     const markdown = fs.readFileSync(absolutePath, "utf-8");
     return { filepath, markdown };
