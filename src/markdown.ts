@@ -10,6 +10,10 @@ export function MarkdownHandler(template: string) {
       rootDir,
       decodeURIComponent(req.path.substring(1)),
     );
+    if (!filepath.startsWith(rootDir)) {
+      res.status(403).end();
+      return;
+    }
     if (existsFile(filepath)) {
       const templateContent = await fs.readFile(template, "utf-8");
       res.status(200).send(templateContent);
