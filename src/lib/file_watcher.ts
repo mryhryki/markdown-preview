@@ -44,6 +44,11 @@ export class FileWatcher {
   }
 
   addTargetFile(filepath: string): void {
+    const absolutePath = path.resolve(rootDir, filepath);
+    if (!absolutePath.startsWith(rootDir)) {
+      this.logger.error("Invalid file path:", filepath);
+      return;
+    }
     if (this._target[filepath] != null) return;
     this.logger.debug("Add watch target:", filepath);
     this._target[filepath] = {
@@ -63,6 +68,9 @@ export class FileWatcher {
 
   getFileInfo(filepath: string): FileChangedEvent {
     const absolutePath = path.resolve(rootDir, filepath);
+    if (!absolutePath.startsWith(rootDir)) {
+      throw new Error(`Invalid file path: ${filepath}`);
+    }
     const markdown = fs.readFileSync(absolutePath, "utf-8");
     return { filepath, markdown };
   }
