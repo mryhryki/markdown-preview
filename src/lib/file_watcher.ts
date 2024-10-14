@@ -63,7 +63,11 @@ export class FileWatcher {
   }
 
   getFileLastModified(filepath: string): number {
-    return fs.statSync(path.resolve(rootDir, filepath)).mtimeMs;
+    const targetFilePath = path.resolve(rootDir, filepath);
+    if (!targetFilePath.startsWith(rootDir)) {
+      throw new Error(`Invalid file path: ${filepath}`);
+    }
+    return fs.statSync(targetFilePath).mtimeMs;
   }
 
   getFileInfo(filepath: string): FileChangedEvent {
