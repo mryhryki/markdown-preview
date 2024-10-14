@@ -5,6 +5,7 @@ on:
     inputs:
       bump_type:
         required: true
+        description: 'Bump type'
         default: 'patch'
         type: choice
         options:
@@ -21,11 +22,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # This setting is required to push contents and tags by git for main branch
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
 
