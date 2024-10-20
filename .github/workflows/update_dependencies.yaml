@@ -8,7 +8,12 @@ on:
 jobs:
   update_dependencies:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
     steps:
+      - uses: Kesin11/actions-timeline@v2
       - name: Checkout
         uses: actions/checkout@v4
         with:
