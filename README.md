@@ -1,5 +1,11 @@
 # markdown-preview
 
+[![check_node](https://github.com/mryhryki/simple-encryption/actions/workflows/check_node.yaml/badge.svg)](https://github.com/mryhryki/simple-encryption/actions/workflows/check_node.yaml)
+[![check_deno](https://github.com/mryhryki/simple-encryption/actions/workflows/check_deno.yaml/badge.svg)](https://github.com/mryhryki/simple-encryption/actions/workflows/check_deno.yaml)
+[![check_bun](https://github.com/mryhryki/simple-encryption/actions/workflows/check_bun.yaml/badge.svg)](https://github.com/mryhryki/simple-encryption/actions/workflows/check_bun.yaml)
+[![check_code](https://github.com/mryhryki/simple-encryption/actions/workflows/check_code.yaml/badge.svg)](https://github.com/mryhryki/simple-encryption/actions/workflows/check_code.yaml)
+[![CodeQL](https://github.com/mryhryki/simple-encryption/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/mryhryki/simple-encryption/actions/workflows/github-code-scanning/codeql)
+
 Markdown realtime preview on browser with your favorite editor.
 
 ## Concept
