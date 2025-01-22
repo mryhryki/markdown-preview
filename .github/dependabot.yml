@@ -12,3 +12,15 @@ updates:
       - mryhryki
     labels:
       - dependencies
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    target-branch: main
+    reviewers:
+      - mryhryki
+    assignees:
+      - mryhryki
+    labels:
+      - dependencies
