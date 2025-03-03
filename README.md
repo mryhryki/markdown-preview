@@ -92,9 +92,6 @@ A simple example code is below:
 ```shell
 $ npm install
 
-# Watch mode
-$ npm run dev
-
 # Build and Run
 $ npm start
 
