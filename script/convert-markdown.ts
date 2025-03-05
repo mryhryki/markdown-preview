@@ -51,7 +51,7 @@ export const convertMarkdownToHtml = async (
 
   const options = {
     emojis: Emojis,
-    renderer: (token: EmojiToken) => token.emoji,
+    renderer: (token: EmojiToken<string>) => token.emoji,
   };
   marked.use(markedEmoji(options));
 
