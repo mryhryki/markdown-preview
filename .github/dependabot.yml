@@ -7,10 +7,6 @@ updates:
       timezone: Asia/Tokyo
     open-pull-requests-limit: 1
     target-branch: main
-    reviewers:
-      - mryhryki
-    assignees:
-      - mryhryki
     labels:
       - dependencies
   - package-ecosystem: npm
@@ -20,9 +16,5 @@ updates:
       timezone: Asia/Tokyo
     open-pull-requests-limit: 3
     target-branch: main
-    reviewers:
-      - mryhryki
-    assignees:
-      - mryhryki
     labels:
       - dependencies
