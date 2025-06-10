@@ -1,4 +1,5 @@
 import path from "node:path";
+import { describe, expect, it } from "vitest";
 import { projectDir } from "./directory";
 import { Params } from "./params";
 

@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import type WebSocket from "ws";
 import { SocketManager } from "./socket_manager";
 
