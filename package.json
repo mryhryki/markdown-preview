@@ -7,10 +7,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "markdown",
-    "preview"
-  ],
+  "keywords": ["markdown", "preview"],
   "homepage": "https://github.com/mryhryki/markdown-preview#readme",
   "repository": {
     "type": "git",
@@ -53,30 +50,18 @@
     "@biomejs/biome": "1.9.4",
     "@types/express": "^5.0.0",
     "@types/express-ws": "^3.0.5",
-    "@types/jest": "^29.5.14",
     "@types/opener": "^1.4.3",
     "@types/serve-index": "^1.9.4",
     "emojilib": "^4.0.1",
     "esbuild": "^0.25.0",
     "github-markdown-css": "^5.8.1",
     "highlight.js": "^11.11.1",
-    "jest": "^29.7.0",
     "marked": "^15.0.6",
     "marked-emoji": "^2.0.0",
     "marked-highlight": "^2.2.1",
     "mermaid": "^11.4.1",
     "nodemon": "^3.1.9",
-    "ts-jest": "^29.2.5",
     "typescript": "^5.7.3"
   },
-  "files": [
-    "index.js",
-    "src/**/*.js",
-    "static/**/*",
-    "template/**/*"
-  ],
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
-  }
+  "files": ["index.js", "src/**/*.js", "static/**/*", "template/**/*"]
 }
