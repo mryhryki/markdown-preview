@@ -1,7 +1,7 @@
 import path from "node:path";
 import { rootDir, templateDir } from "./directory";
 import { existsFile } from "./file";
-import { type LogLevel, getLogLevel } from "./logger";
+import { getLogLevel, type LogLevel } from "./logger";
 
 interface InnerParams {
   filepath: string;
