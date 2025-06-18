@@ -4,3 +4,6 @@ script/**/*.js
 
 static/**
 !static/markdown-preview-websocket.js
+
+# Claude Code
+.claude/
