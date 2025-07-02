@@ -59,7 +59,7 @@
     "esbuild": "^0.25.0",
     "github-markdown-css": "^5.8.1",
     "highlight.js": "^11.11.1",
-    "marked": "^15.0.6",
+    "marked": "^16.0.0",
     "marked-emoji": "^2.0.0",
     "marked-highlight": "^2.2.1",
     "mermaid": "^11.4.1",
