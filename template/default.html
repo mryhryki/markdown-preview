@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markdown Preview</title>
     <link rel="stylesheet" href="/github-markdown.css" />
-    <link rel="stylesheet" href="/highlightjs-github.css" />
+    <link rel="stylesheet" href="/highlightjs-github.css"  media="(prefers-color-scheme: light)" />
+    <link rel="stylesheet" href="/highlightjs-github-dark-dimmed.css"  media="(prefers-color-scheme: dark)" />
   </head>
-  <body style="box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 45px">
-    <div class="markdown-body">
-      <div id="content"></div>
-    </div>
+  <body class="markdown-body" style="box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 45px">
+    <div id="content"></div>
     <script type="module">
       import { connectMarkdownPreview } from "/markdown-preview-websocket.js";
       import { convertMarkdownToHtml } from "/convert-markdown.js";
