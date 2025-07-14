@@ -30,7 +30,7 @@
   "scripts": {
     "build": "npm run build:server && npm run build:css && npm run build:js",
     "build:server": "tsc",
-    "build:css": "cp ./node_modules/github-markdown-css/github-markdown.css ./static/github-markdown.css && cp ./node_modules/highlight.js/styles/github.css ./static/highlightjs-github.css",
+    "build:css": "cp ./node_modules/github-markdown-css/github-markdown.css ./static/github-markdown.css && cp ./node_modules/highlight.js/styles/github.css ./static/highlightjs-github.css && cp ./node_modules/highlight.js/styles/github-dark-dimmed.css ./static/highlightjs-github-dark-dimmed.css",
     "build:js": "esbuild --bundle --platform=browser --format=esm --outfile=./static/convert-markdown.js ./script/convert-markdown.ts",
     "fmt": "biome check --write ./src/**/*.ts ./**/*.html",
     "lint": "biome check ./src/**/*.ts ./**/*.html",
