@@ -20,6 +20,8 @@ export class FileWatcher {
   constructor(logger: Logger) {
     this.logger = logger;
     this._target = {};
+
+    let lastErrorMessage: string = "-";
     setInterval(() => {
       for (const filepath in this._target) {
         try {
@@ -33,7 +35,10 @@ export class FileWatcher {
             }
           }
         } catch (err) {
-          console.error(err);
+          const errorMessage = err instanceof Error ? err.message : String(err);
+          if (errorMessage === lastErrorMessage) continue;
+          lastErrorMessage = errorMessage;
+          console.error(errorMessage);
         }
       }
     }, 250 /* check 4 times per second */);
