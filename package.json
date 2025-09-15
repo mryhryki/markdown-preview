@@ -60,7 +60,7 @@
     "esbuild": "0.25.9",
     "github-markdown-css": "5.8.1",
     "highlight.js": "11.11.1",
-    "marked": "16.2.1",
+    "marked": "16.3.0",
     "marked-emoji": "2.0.1",
     "marked-highlight": "2.2.2",
     "mermaid": "11.11.0",
