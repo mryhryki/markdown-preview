@@ -19,6 +19,7 @@ jobs:
     permissions:
       actions: read
       contents: write
+      id-token: write
     steps:
       - uses: Kesin11/actions-timeline@v2
       - name: Checkout
@@ -30,6 +31,8 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
+      - name: Update npm
+        run: npm install -g npm@latest
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
 
@@ -48,16 +51,14 @@ jobs:
         run: |
           git config user.name "mryhryki"
           git config user.email "mryhryki@gmail.com"
-      - name: Set AuthToken for npmjs.com
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_ACCESS_TOKEN}" > "${HOME}/.npmrc"
-        env:
-          NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
       - name: Update package version
         run: |
           npm version ${{ github.event.inputs.bump_type }}
           echo VERSION="v$(cat package.json | jq -r '.version')" >> "${GITHUB_ENV}"
       - name: Publish to npmjs.com
-        run: npm run release
+        run: |
+          npm run build
+          npm publish
       - name: Push tag to GitHub
         run: |
           git push
@@ -65,4 +66,5 @@ jobs:
       - name: Create Release to GitHub
         run: gh release create "${VERSION}" --generate-notes
         env:
+          # This setting is required to push contents and tags by git for main branch
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
