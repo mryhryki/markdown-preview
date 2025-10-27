@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.7",
-    "@types/express": "5.0.3",
+    "@types/express": "5.0.4",
     "@types/express-ws": "3.0.6",
     "@types/opener": "1.4.3",
     "@types/serve-index": "1.9.4",
