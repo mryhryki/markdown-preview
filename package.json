@@ -51,7 +51,7 @@
     "ws": "8.18.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.7",
+    "@biomejs/biome": "2.3.1",
     "@types/express": "5.0.4",
     "@types/express-ws": "3.0.6",
     "@types/opener": "1.4.3",
