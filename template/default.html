@@ -11,8 +11,8 @@
   <body class="markdown-body" style="box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 45px">
     <div id="content"></div>
     <script type="module">
-      import { connectMarkdownPreview } from "/markdown-preview-websocket.js";
       import { convertMarkdownToHtml } from "/convert-markdown.js";
+      import { connectMarkdownPreview } from "/markdown-preview-websocket.js";
 
       connectMarkdownPreview(async ({ markdown }) => {
         await convertMarkdownToHtml(document.getElementById("content"), markdown);
