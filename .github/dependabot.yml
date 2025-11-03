@@ -12,7 +12,7 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: monthly
       timezone: Asia/Tokyo
     open-pull-requests-limit: 3
     target-branch: main
