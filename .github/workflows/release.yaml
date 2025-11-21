@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: Kesin11/actions-timeline@v2
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # This setting is required to push contents and tags by git for main branch
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
