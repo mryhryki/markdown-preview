@@ -43,7 +43,7 @@
     "type:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
-    "express": "5.1.0",
+    "express": "5.2.1",
     "express-ws": "5.0.2",
     "log4js": "6.9.1",
     "opener": "1.5.2",
