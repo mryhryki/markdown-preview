@@ -6,6 +6,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "marked-emoji": ["./node_modules/marked-emoji/src/index.d.ts"]
+    }
   }
 }
