@@ -5,8 +5,8 @@ on:
     inputs:
       bump_type:
         required: true
-        description: 'Bump type'
-        default: 'patch'
+        description: "Bump type"
+        default: "patch"
         type: choice
         options:
           - major
@@ -30,9 +30,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
-      - name: Update npm
-        run: npm install -g npm@latest
+          node-version: 24
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
 
