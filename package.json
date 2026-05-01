@@ -65,7 +65,7 @@
     "marked-highlight": "2.2.3",
     "mermaid": "11.14.0",
     "nodemon": "3.1.11",
-    "typescript": "6.0.2",
+    "typescript": "6.0.3",
     "vitest": "4.0.18"
   },
   "files": [
