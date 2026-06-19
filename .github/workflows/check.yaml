@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: Kesin11/actions-timeline@v3
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup Node
