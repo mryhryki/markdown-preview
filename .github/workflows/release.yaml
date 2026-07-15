@@ -28,7 +28,7 @@ jobs:
           # This setting is required to push contents and tags by git for main branch
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Show environment
