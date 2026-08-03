@@ -21,7 +21,7 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: Kesin11/actions-timeline@v3
+      - uses: Kesin11/actions-timeline@v3.1.1
       - name: Checkout
         uses: actions/checkout@v7
         with:
